@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "882515457544",
+    "project_id": "aries-mobile-agent-react",
+    "storage_bucket": "aries-mobile-agent-react.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882515457544:android:cba09fd2a03509a24f43bd",
+        "android_client_info": {
+          "package_name": "com.ariesbifold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882515457544-4c6me90dfpeomupfqm95gk59mjg54pdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6D_URxAlDbUhNZ8lPbxODMsuXsgF6Trs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882515457544-4c6me90dfpeomupfqm95gk59mjg54pdk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

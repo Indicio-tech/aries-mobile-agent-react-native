@@ -19,6 +19,7 @@ import '@formatjs/intl-datetimeformat/polyfill'
 import '@formatjs/intl-datetimeformat/locale-data/en' // locale-data for en
 import '@formatjs/intl-datetimeformat/add-all-tz' // Add ALL tz data
 
+import messaging from '@react-native-firebase/messaging'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { AppRegistry } from 'react-native'
@@ -26,6 +27,12 @@ import { AppRegistry } from 'react-native'
 import App from './App'
 import { ColorPallet } from './App/theme'
 import { name as appName } from './app.json'
+
+/* eslint-disable no-console */
+messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+  // eslint-disable-next-line no-undef
+  console.log('Message received in background!', remoteMessage)
+})
 
 const navigationTheme = {
   dark: true,
