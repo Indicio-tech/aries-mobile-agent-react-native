@@ -6,12 +6,13 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { useNotifications } from '../hooks/notifications'
-import { ColorPallet, TextTheme } from '../theme'
 import { Screens, Stacks, TabStackParams, TabStacks } from '../types/navigators'
 import { useThemeContext } from '../utils/themeContext'
 
+import ContactStack from './ContactStack'
 import CredentialStack from './CredentialStack'
 import HomeStack from './HomeStack'
+import SettingStack from './SettingStack'
 
 const TabStack: React.FC = () => {
   const { total } = useNotifications()
@@ -59,6 +60,30 @@ const TabStack: React.FC = () => {
               </Text>
             ),
             tabBarAccessibilityLabel: t('TabStack.Home'),
+          }}
+        />
+        <Tab.Screen
+          name={TabStacks.ContactStack}
+          component={ContactStack}
+          options={{
+            tabBarIcon: ({ color, focused }) => (
+              <Icon name={focused ? 'chat' : 'chat-outline'} color={color} size={30} />
+            ),
+            tabBarBadge: total || undefined,
+            tabBarBadgeStyle: { backgroundColor: ColorPallet.semantic.error },
+            tabBarLabel: ({ focused }) => (
+              <Text
+                style={{
+                  ...TextTheme.label,
+                  fontWeight: 'normal',
+                  paddingBottom: 5,
+                  color: focused ? ColorPallet.brand.primary : ColorPallet.notification.infoText,
+                }}
+              >
+                {t('TabStack.Contacts')}
+              </Text>
+            ),
+            tabBarAccessibilityLabel: t('TabStack.Contacts'),
           }}
         />
         <Tab.Screen
@@ -127,6 +152,26 @@ const TabStack: React.FC = () => {
               </Text>
             ),
             tabBarAccessibilityLabel: t('TabStack.Credentials'),
+          }}
+        />
+        <Tab.Screen
+          name={TabStacks.SettingStack}
+          component={SettingStack}
+          options={{
+            tabBarIcon: ({ color, focused }) => <Icon name={focused ? 'cog' : 'cog-outline'} color={color} size={30} />,
+            tabBarLabel: ({ focused }) => (
+              <Text
+                style={{
+                  ...TextTheme.label,
+                  fontWeight: 'normal',
+                  paddingBottom: 5,
+                  color: focused ? ColorPallet.brand.primary : ColorPallet.notification.infoText,
+                }}
+              >
+                {t('TabStack.Settings')}
+              </Text>
+            ),
+            tabBarAccessibilityLabel: t('TabStack.Settings'),
           }}
         />
       </Tab.Navigator>

@@ -149,8 +149,10 @@ const translation = {
   },
   "TabStack": {
     "Home": "Home",
+    "Contacts": "Contacts",
     "Scan": "Scan",
     "Credentials": "Credentials",
+    "Settings": "Settings",
   },
   "RootStack": {
     "Contacts": "Contacts",

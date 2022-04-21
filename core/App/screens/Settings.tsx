@@ -65,7 +65,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
             >{`${getVersion()}-${getBuildNumber()}`}</Text>
           </View>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             accessible={true}
             accessibilityLabel={t('RootStack.Contacts')}
             testID={testIdWithKey('Contacts')}
@@ -78,7 +78,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           >
             <Text style={[TextTheme.normal]}>{t('RootStack.Contacts')}</Text>
             <Icon name={'chevron-right'} size={25} color={ColorPallet.notification.infoText} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </SafeAreaScrollView>
