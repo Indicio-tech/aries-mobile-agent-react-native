@@ -6,6 +6,7 @@ import { GiftedChat, IMessage } from 'react-native-gifted-chat'
 import { renderBubble, renderInputToolbar, renderComposer, renderSend } from '../components/chat'
 import InfoIcon from '../components/misc/InfoIcon'
 import { ContactStackParams, Screens } from '../types/navigators'
+import { useThemeContext } from '../utils/themeContext'
 
 type ChatProps = StackScreenProps<ContactStackParams, Screens.Chat>
 
@@ -14,6 +15,7 @@ const Chat: React.FC<ChatProps> = ({ navigation, route }) => {
   const connectionId = route?.params?.connectionId
   const connection = useConnectionById(route?.params?.connectionId)
   const basicMessages = useBasicMessagesByConnectionId(route?.params?.connectionId)
+  const { ChatTheme } = useThemeContext()
 
   const [messages, setMessages] = useState<any>([])
 

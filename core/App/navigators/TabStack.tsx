@@ -6,18 +6,19 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { useNotifications } from '../hooks/notifications'
-import { ColorPallet, TextTheme } from '../theme'
 import { Screens, Stacks, TabStackParams, TabStacks } from '../types/navigators'
 import { useThemeContext } from '../utils/themeContext'
 
+import ContactStack from './ContactStack'
 import CredentialStack from './CredentialStack'
 import HomeStack from './HomeStack'
+import SettingStack from './SettingStack'
 
 const TabStack: React.FC = () => {
   const { total } = useNotifications()
   const { t } = useTranslation()
   const Tab = createBottomTabNavigator<TabStackParams>()
-  const { ColorPallet, TextTheme, TabTheme } = useThemeContext()
+  const { ColorPallet, TabTheme } = useThemeContext()
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: ColorPallet.brand.secondary }}>
       <Tab.Navigator
@@ -53,44 +54,6 @@ const TabStack: React.FC = () => {
           }}
         />
         <Tab.Screen
-          name={TabStacks.ConnectStack}
-          options={{
-            tabBarIcon: () => (
-              <View
-                style={{
-                  ...TabTheme.focusTabIconStyle,
-                }}
-              >
-                <Icon
-                  name="qrcode-scan"
-                  color={ColorPallet.grayscale.white}
-                  size={32}
-                  style={{ paddingLeft: 0.5, paddingTop: 0.5 }}
-                />
-              </View>
-            ),
-            tabBarLabel: ({ focused }) => (
-              <Text
-                style={{
-                  ...TabTheme.tabTextStyle,
-                  color: focused ? TabTheme.tabBarActiveTintColor : TabTheme.tabBarInactiveTintColor,
-                }}
-              >
-                {t('TabStack.Scan')}
-              </Text>
-            ),
-            tabBarAccessibilityLabel: t('TabStack.Scan'),
-          }}
-          listeners={({ navigation }) => ({
-            tabPress: (e) => {
-              e.preventDefault()
-              navigation.navigate(Stacks.ConnectStack, { screen: Screens.Scan })
-            },
-          })}
-        >
-          {() => <View />}
-        </Tab.Screen>
-        <Tab.Screen
           name={TabStacks.CredentialStack}
           component={CredentialStack}
           options={{
@@ -108,6 +71,85 @@ const TabStack: React.FC = () => {
               </Text>
             ),
             tabBarAccessibilityLabel: t('TabStack.Credentials'),
+          }}
+        />
+        <Tab.Screen
+          name={TabStacks.ConnectStack}
+          options={{
+            tabBarIcon: () => (
+              <View
+                style={{
+                  ...TabTheme.focusTabIconStyle,
+                }}
+              >
+                <Icon
+                  name="qrcode-scan"
+                  color={TabTheme.tabBarInactiveTintColor}
+                  size={32}
+                  style={{ paddingLeft: 0.5, paddingTop: 0.5 }}
+                />
+              </View>
+            ),
+            tabBarLabel: () => {null},
+            // tabBarLabel: ({ focused }) => (
+            //   <Text
+            //     style={{
+            //       ...TabTheme.tabTextStyle,
+            //       color: focused ? TabTheme.tabBarActiveTintColor : TabTheme.tabBarInactiveTintColor,
+            //     }}
+            //   >
+            //     {t('TabStack.Scan')}
+            //   </Text>
+            // ),
+            tabBarAccessibilityLabel: t('TabStack.Scan'),
+          }}
+          listeners={({ navigation }) => ({
+            tabPress: (e) => {
+              e.preventDefault()
+              navigation.navigate(Stacks.ConnectStack, { screen: Screens.Scan })
+            },
+          })}
+        >
+          {() => <View />}
+        </Tab.Screen>
+        <Tab.Screen
+          name={TabStacks.ContactStack}
+          component={ContactStack}
+          options={{
+            tabBarIcon: ({ color, focused }) => (
+              <Icon name={focused ? 'account-multiple' : 'account-multiple-outline'} color={color} size={30} />
+            ),
+            tabBarBadge: total || undefined,
+            tabBarBadgeStyle: { backgroundColor: ColorPallet.semantic.error },
+            tabBarLabel: ({ focused }) => (
+              <Text
+                style={{
+                  ...TabTheme.tabTextStyle,
+                  color: focused ? TabTheme.tabBarActiveTintColor : TabTheme.tabBarInactiveTintColor,
+                }}
+              >
+                {t('TabStack.Contacts')}
+              </Text>
+            ),
+            tabBarAccessibilityLabel: t('TabStack.Contacts'),
+          }}
+        />
+        <Tab.Screen
+          name={TabStacks.SettingStack}
+          component={SettingStack}
+          options={{
+            tabBarIcon: ({ color, focused }) => <Icon name={focused ? 'cog' : 'cog-outline'} color={color} size={30} />,
+            tabBarLabel: ({ focused }) => (
+              <Text
+                style={{
+                  ...TabTheme.tabTextStyle,
+                  color: focused ? TabTheme.tabBarActiveTintColor : TabTheme.tabBarInactiveTintColor,
+                }}
+              >
+                {t('TabStack.Settings')}
+              </Text>
+            ),
+            tabBarAccessibilityLabel: t('TabStack.Settings'),
           }}
         />
       </Tab.Navigator>

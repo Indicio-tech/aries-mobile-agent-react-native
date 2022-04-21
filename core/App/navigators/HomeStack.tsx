@@ -18,9 +18,9 @@ const HomeStack: React.FC = () => {
       <Stack.Screen
         name={Screens.Home}
         component={Home}
-        options={() => ({
-          headerRight: () => <SettingsCog />,
-        })}
+        // options={() => ({
+        //   headerRight: () => <SettingsCog />,
+        // })}
       />
       <Stack.Screen name={Screens.Notifications} component={ListNotifications} />
     </Stack.Navigator>

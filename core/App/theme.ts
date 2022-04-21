@@ -95,21 +95,32 @@ interface ColorPallet {
   grayscale: GrayscaleColors
 }
 
-export const borderRadius = 4
+export const borderRadius = 15
 export const heavyOpacity = 0.7
 export const lightOpacity = 0.35
 export const zeroOpacity = 0.0
 export const borderWidth = 2
 
+// const BrandColors: BrandColors = {
+//   primary: '#42803E',
+//   primaryDisabled: `rgba(53, 130, 63, ${lightOpacity})`,
+//   secondary: '#FFFFFFFF',
+//   secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
+//   highlight: '#FCBA19',
+//   primaryBackground: '#000000',
+//   secondaryBackground: '#313132',
+//   link: '#FFFFFF',
+// }
+
 const BrandColors: BrandColors = {
-  primary: '#42803E',
-  primaryDisabled: `rgba(53, 130, 63, ${lightOpacity})`,
-  secondary: '#FFFFFFFF',
-  secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
-  highlight: '#FCBA19',
-  primaryBackground: '#000000',
-  secondaryBackground: '#313132',
-  link: '#FFFFFF',
+  primary: '#FF6701',
+  primaryDisabled: `rgba(255, 103, 1, ${lightOpacity})`,
+  secondary: '#333545',
+  secondaryDisabled: `rgba(51, 53, 69, ${heavyOpacity})`,
+  highlight: '#CF0022',
+  primaryBackground: '#FFFFFF',
+  secondaryBackground: '#333545',
+  link: '#000000'
 }
 
 const SemanticColors: SemanticColors = {
@@ -118,23 +129,42 @@ const SemanticColors: SemanticColors = {
   focus: '#3399FF',
 }
 
+// const NotificationColors: NotificationColors = {
+//   success: '#313132',
+//   successBorder: '#2E8540',
+//   successIcon: '#2E8540',
+//   successText: '#FFFFFF',
+//   info: '#313132',
+//   infoBorder: '#0099FF',
+//   infoIcon: '#0099FF',
+//   infoText: '#FFFFFF',
+//   warn: '#313132',
+//   warnBorder: '#FCBA19',
+//   warnIcon: '#FCBA19',
+//   warnText: '#FFFFFF',
+//   error: '#313132',
+//   errorBorder: '#D8292F',
+//   errorIcon: '#D8292F',
+//   errorText: '#FFFFFF',
+// }
+
 const NotificationColors: NotificationColors = {
-  success: '#313132',
-  successBorder: '#2E8540',
-  successIcon: '#2E8540',
-  successText: '#FFFFFF',
-  info: '#313132',
-  infoBorder: '#0099FF',
-  infoIcon: '#0099FF',
+  success: '#dff0d8',
+  successBorder: '#d8e9c6',
+  successIcon: '#2f451f',
+  successText: '#2f451f',
+  info: `#62627F`,
+  infoBorder: '#333545',
+  infoIcon: '#FFFFFF',
   infoText: '#FFFFFF',
-  warn: '#313132',
-  warnBorder: '#FCBA19',
-  warnIcon: '#FCBA19',
-  warnText: '#FFFFFF',
-  error: '#313132',
-  errorBorder: '#D8292F',
-  errorIcon: '#D8292F',
-  errorText: '#FFFFFF',
+  warn: '#f9e9c6',
+  warnBorder: '#fae6cc',
+  warnIcon: '#6c3f00',
+  warnText: '#6c3f00',
+  error: '#f2dfde',
+  errorBorder: '#ebcccd',
+  errorIcon: '#a13522',
+  errorText: '#a13522',
 }
 
 const GrayscaleColors: GrayscaleColors = {
@@ -177,7 +207,8 @@ export const TextTheme: TextTheme = {
   normal: {
     fontSize: 18,
     fontWeight: 'normal',
-    color: ColorPallet.grayscale.white,
+    // color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   label: {
     fontSize: 14,
@@ -187,23 +218,27 @@ export const TextTheme: TextTheme = {
   labelTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    // color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   labelSubtitle: {
     fontSize: 14,
     fontWeight: 'normal',
-    color: ColorPallet.grayscale.white,
+    // color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   labelText: {
     fontSize: 10,
     fontWeight: 'normal',
     fontStyle: 'italic',
-    color: ColorPallet.grayscale.white,
+    // color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   caption: {
     fontSize: 14,
     fontWeight: 'normal',
     color: ColorPallet.grayscale.white,
+    // color: ColorPallet.grayscale.darkGrey,
   },
   title: {
     fontSize: 20,
@@ -221,7 +256,8 @@ export const Inputs: Inputs = StyleSheet.create({
     borderRadius,
     fontSize: 16,
     backgroundColor: ColorPallet.brand.primaryBackground,
-    color: ColorPallet.notification.infoText,
+    // color: ColorPallet.notification.infoText,
+    color: ColorPallet.brand.secondary,
     borderWidth: 2,
     borderColor: ColorPallet.brand.secondary,
   },
@@ -250,12 +286,14 @@ export const Inputs: Inputs = StyleSheet.create({
 export const Buttons = StyleSheet.create({
   primary: {
     padding: 16,
-    borderRadius: 4,
+    // borderRadius: 4,
+    borderRadius: 15,
     backgroundColor: ColorPallet.brand.primary,
   },
   primaryDisabled: {
     padding: 16,
-    borderRadius: 4,
+    // borderRadius: 4,
+    borderRadius: 15,
     backgroundColor: ColorPallet.brand.primaryDisabled,
   },
   primaryText: {
@@ -272,13 +310,15 @@ export const Buttons = StyleSheet.create({
   },
   secondary: {
     padding: 16,
-    borderRadius: 4,
+    // borderRadius: 4,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: ColorPallet.brand.primary,
   },
   secondaryDisabled: {
     padding: 16,
-    borderRadius: 4,
+    // borderRadius: 4,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: ColorPallet.brand.secondaryDisabled,
   },
@@ -302,12 +342,13 @@ const ListItems = StyleSheet.create({
   },
   credentialTitle: {
     ...TextTheme.headingFour,
+    color: ColorPallet.grayscale.darkGrey,
   },
   credentialDetails: {
     ...TextTheme.caption,
   },
   contactBackground: {
-    backgroundColor: ColorPallet.brand.secondaryBackground,
+    backgroundColor: ColorPallet.grayscale.lightGrey,
   },
   contactIconBackground: {
     backgroundColor: ColorPallet.brand.primary,
@@ -339,8 +380,11 @@ export const TabTheme = {
     height: 60,
     width: 60,
     backgroundColor: ColorPallet.brand.primary,
-    top: -20,
-    borderRadius: 60,
+    // backgroundColor: ColorPallet.notification.info,
+    // top: -20,
+    // borderRadius: 60,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -351,7 +395,7 @@ export const NavigationTheme = {
   colors: {
     primary: ColorPallet.brand.primary,
     background: ColorPallet.brand.primaryBackground,
-    card: ColorPallet.brand.primary,
+    card: ColorPallet.brand.secondary,
     text: ColorPallet.grayscale.white,
     border: ColorPallet.grayscale.white,
     notification: ColorPallet.grayscale.white,
