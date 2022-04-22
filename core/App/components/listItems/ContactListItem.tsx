@@ -41,7 +41,11 @@ const ContactListItem: React.FC<Props> = ({ contact, navigation }) => {
       borderTopRightRadius: 15,
       borderBottomRightRadius: 15,
     },
+    title: {
+      ...ListItems.contactTitle,
+    },
     date: {
+      ...ListItems.contactDate,
       marginTop: 10,
     },
   })
@@ -55,7 +59,7 @@ const ContactListItem: React.FC<Props> = ({ contact, navigation }) => {
     >
       <View key={contact.id} style={styles.outerContainer}>
         <View style={styles.textContainer}>
-          <Title>{contact?.alias || contact?.invitation?.label}</Title>
+          <Title style={styles.title}>{contact?.alias || contact?.invitation?.label}</Title>
           <Text style={styles.date}>{contact.createdAt.toLocaleDateString('en-CA', dateFormatOptions)}</Text>
         </View>
         <View style={styles.iconContainer}>
