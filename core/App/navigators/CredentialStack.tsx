@@ -18,9 +18,6 @@ const CredentialStack: React.FC = () => {
       <Stack.Screen
         name={Screens.Credentials}
         component={ListCredentials}
-        options={() => ({
-          headerRight: () => <SettingsCog />,
-        })}
       />
       <Stack.Screen name={Screens.CredentialDetails} component={CredentialDetails} />
     </Stack.Navigator>
