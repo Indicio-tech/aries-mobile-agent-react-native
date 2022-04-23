@@ -296,7 +296,7 @@ export const Buttons = StyleSheet.create({
   },
 })
 
-const ListItems = StyleSheet.create({
+export const ListItems = StyleSheet.create({
   credentialBackground: {
     backgroundColor: ColorPallet.brand.secondaryBackground,
   },
