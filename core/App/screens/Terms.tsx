@@ -20,7 +20,7 @@ const Terms: React.FC = () => {
   const [checked, setChecked] = useState(false)
   const { t } = useTranslation()
   const navigation = useNavigation<StackNavigationProp<AuthenticateStackParams>>()
-  const { ColorPallet, TextTheme } = useThemeContext()
+  const { ColorPallet, OnboardingTheme } = useThemeContext()
   const onSubmitPressed = () => {
     dispatch({
       type: DispatchAction.SetDidAgreeToTerms,
@@ -35,7 +35,7 @@ const Terms: React.FC = () => {
       margin: 20,
     },
     bodyText: {
-      ...TextTheme.normal,
+      ...OnboardingTheme.bodyText,
       flexShrink: 1,
     },
     controls: {
