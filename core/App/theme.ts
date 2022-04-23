@@ -480,6 +480,7 @@ export interface Theme {
   HomeTheme: any
   SettingsTheme: any
   ChatTheme: any
+  OnboardingTheme: any
   heavyOpacity: any
   borderRadius: any
   borderWidth: typeof borderWidth
@@ -496,6 +497,7 @@ export const defaultTheme: Theme = {
   HomeTheme,
   SettingsTheme,
   ChatTheme,
+  OnboardingTheme,
   heavyOpacity,
   borderRadius,
   borderWidth,

@@ -7,7 +7,6 @@ import CredentialList from '../assets/img/credential-list.svg'
 import ScanShare from '../assets/img/scan-share.svg'
 import SecureImage from '../assets/img/secure-image.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
-import { OnboardingTheme } from '../theme'
 import { GenericFn } from '../types/fn'
 import { testIdWithKey } from '../utils/testable'
 
@@ -81,10 +80,10 @@ export function createImageDisplayOptions(OnboardingTheme: any) {
     width: 180,
   }
 }
-const customPages = (onTutorialCompleted: GenericFn, onboardingTheme: any) => {
+const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   const { t } = useTranslation()
-  const defaultStyle = createStyle(onboardingTheme)
-  const imageDisplayOptions = createImageDisplayOptions(onboardingTheme)
+  const defaultStyle = createStyle(OnboardingTheme)
+  const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
   return (
     <>
       <View style={{ alignItems: 'center' }}>
@@ -125,9 +124,9 @@ const guides: Array<{ image: React.FC<SvgProps>; title: string; body: string }> 
   },
 ]
 
-const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, onboardingTheme: any) => {
-  const defaultStyle = createStyle(onboardingTheme)
-  const imageDisplayOptions = createImageDisplayOptions(onboardingTheme)
+const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, OnboardingTheme: any) => {
+  const defaultStyle = createStyle(OnboardingTheme)
+  const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
   return (
     <>
       <View style={{ alignItems: 'center' }}>{image(imageDisplayOptions)}</View>
@@ -143,7 +142,7 @@ const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, 
   )
 }
 
-export const pages = (onTutorialCompleted: GenericFn): Array<Element> => {
+export const pages = (onTutorialCompleted: GenericFn, OnboardingTheme: any): Array<Element> => {
   return [
     ...guides.map((g) => createPageWith(g.image, g.title, g.body, OnboardingTheme)),
     customPages(onTutorialCompleted, OnboardingTheme),
