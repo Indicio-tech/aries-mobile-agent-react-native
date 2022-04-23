@@ -143,9 +143,9 @@ const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, 
   )
 }
 
-export const pages = (onTutorialCompleted: GenericFn, onboardingTheme: any): Array<Element> => {
+export const pages = (onTutorialCompleted: GenericFn): Array<Element> => {
   return [
-    ...guides.map((g) => createPageWith(g.image, g.title, g.body, onboardingTheme)),
-    customPages(onTutorialCompleted, onboardingTheme),
+    ...guides.map((g) => createPageWith(g.image, g.title, g.body, OnboardingTheme)),
+    customPages(onTutorialCompleted, OnboardingTheme),
   ]
 }
