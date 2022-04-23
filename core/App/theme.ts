@@ -337,6 +337,9 @@ export const ListItems = StyleSheet.create({
   avatarCircle: {
     borderRadius: TextTheme.headingTwo.fontSize,
     borderColor: TextTheme.headingTwo.color,
+  },
+  emptyList: {
+    ...TextTheme.normal,
   }
 })
 
