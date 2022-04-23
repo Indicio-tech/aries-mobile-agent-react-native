@@ -7,22 +7,22 @@ import CredentialList from '../assets/img/credential-list.svg'
 import ScanShare from '../assets/img/scan-share.svg'
 import SecureImage from '../assets/img/secure-image.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
-import { Theme } from '../theme'
+import { OnboardingTheme } from '../theme'
 import { GenericFn } from '../types/fn'
 import { testIdWithKey } from '../utils/testable'
 
 import { OnboardingStyleSheet } from './Onboarding'
 
-export const createCarouselStyle = (theme: Theme): OnboardingStyleSheet => {
+export const createCarouselStyle = (OnboardingTheme: any): OnboardingStyleSheet => {
   return StyleSheet.create({
     container: {
+      ...OnboardingTheme.container,
       flex: 1,
       alignItems: 'center',
-      backgroundColor: theme.ColorPallet.brand.primaryBackground,
     },
     carouselContainer: {
+      ...OnboardingTheme.carouselContainer,
       flexDirection: 'column',
-      backgroundColor: theme.ColorPallet.brand.primaryBackground,
     },
     pagerContainer: {
       flexShrink: 2,
@@ -31,39 +31,35 @@ export const createCarouselStyle = (theme: Theme): OnboardingStyleSheet => {
       marginBottom: 35,
     },
     pagerDot: {
+      ...OnboardingTheme.pagerDot,
       borderWidth: 1,
       borderStyle: 'solid',
-      borderColor: theme.ColorPallet.brand.primary,
     },
     pagerDotActive: {
-      color: theme.ColorPallet.brand.primary,
+      ...OnboardingTheme.pagerDotActive,
     },
     pagerDotInactive: {
-      color: theme.ColorPallet.brand.secondary,
+      ...OnboardingTheme.pagerDotInactive,
     },
     pagerPosition: {
       position: 'relative',
       top: 0,
     },
     pagerNavigationButton: {
+      ...OnboardingTheme.pagerNavigationButton,
       fontSize: 18,
       fontWeight: 'bold',
-      color: theme.ColorPallet.brand.primary,
     },
   })
 }
-export const createStyle = (theme: Theme) => {
+export const createStyle = (OnboardingTheme: any) => {
   return StyleSheet.create({
     headerText: {
-      fontSize: 32,
-      fontWeight: 'bold',
-      color: theme.ColorPallet.notification.infoText,
+      ...OnboardingTheme.headerText,
     },
     bodyText: {
+      ...OnboardingTheme.bodyText,
       flexShrink: 1,
-      fontSize: 18,
-      fontWeight: 'normal',
-      color: theme.ColorPallet.notification.infoText,
     },
     point: {
       flexDirection: 'row',
@@ -78,17 +74,17 @@ export const createStyle = (theme: Theme) => {
     },
   })
 }
-export function createImageDisplayOptions(theme: Theme) {
+export function createImageDisplayOptions(OnboardingTheme: any) {
   return {
-    fill: theme.ColorPallet.notification.infoText,
+    ...OnboardingTheme.imageDisplayOptions,
     height: 180,
     width: 180,
   }
 }
-const customPages = (onTutorialCompleted: GenericFn, theme: Theme) => {
+const customPages = (onTutorialCompleted: GenericFn, onboardingTheme: any) => {
   const { t } = useTranslation()
-  const defaultStyle = createStyle(theme)
-  const imageDisplayOptions = createImageDisplayOptions(theme)
+  const defaultStyle = createStyle(onboardingTheme)
+  const imageDisplayOptions = createImageDisplayOptions(onboardingTheme)
   return (
     <>
       <View style={{ alignItems: 'center' }}>
@@ -129,9 +125,9 @@ const guides: Array<{ image: React.FC<SvgProps>; title: string; body: string }> 
   },
 ]
 
-const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, theme: Theme) => {
-  const defaultStyle = createStyle(theme)
-  const imageDisplayOptions = createImageDisplayOptions(theme)
+const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, onboardingTheme: any) => {
+  const defaultStyle = createStyle(onboardingTheme)
+  const imageDisplayOptions = createImageDisplayOptions(onboardingTheme)
   return (
     <>
       <View style={{ alignItems: 'center' }}>{image(imageDisplayOptions)}</View>
@@ -147,9 +143,9 @@ const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, 
   )
 }
 
-export const pages = (onTutorialCompleted: GenericFn, theme: Theme): Array<Element> => {
+export const pages = (onTutorialCompleted: GenericFn, onboardingTheme: any): Array<Element> => {
   return [
-    ...guides.map((g) => createPageWith(g.image, g.title, g.body, theme)),
-    customPages(onTutorialCompleted, theme),
+    ...guides.map((g) => createPageWith(g.image, g.title, g.body, onboardingTheme)),
+    customPages(onTutorialCompleted, onboardingTheme),
   ]
 }
