@@ -307,6 +307,9 @@ const ListItems = StyleSheet.create({
   credentialDetails: {
     ...TextTheme.caption,
   },
+  emptyList: {
+    ...TextTheme.normal,
+  },
   contactBackground: {
     backgroundColor: ColorPallet.grayscale.darkGrey,
   },
