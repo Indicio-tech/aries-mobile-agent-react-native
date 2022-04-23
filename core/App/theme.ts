@@ -296,7 +296,7 @@ export const Buttons = StyleSheet.create({
   },
 })
 
-const ListItems = StyleSheet.create({
+export const ListItems = StyleSheet.create({
   credentialBackground: {
     backgroundColor: ColorPallet.brand.secondaryBackground,
   },
@@ -329,6 +329,14 @@ const ListItems = StyleSheet.create({
   },
   recordAttributeText: {
     ...TextTheme.normal,
+  },
+  avatarText: {
+    ...TextTheme.headingTwo,
+    fontWeight: 'normal',
+  },
+  avatarCircle: {
+    borderRadius: TextTheme.headingTwo.fontSize,
+    borderColor: TextTheme.headingTwo.color,
   }
 })
 
@@ -443,6 +451,41 @@ export const ChatTheme = {
   sendDisabled: ColorPallet.brand.primaryDisabled,
 }
 
+export const OnboardingTheme = {
+  container: {
+    backgroundColor: ColorPallet.brand.primaryBackground,
+  },
+  carouselContainer: {
+    backgroundColor: ColorPallet.brand.primaryBackground,
+  },
+  pagerDot: {
+    borderColor: ColorPallet.brand.primary,
+  },
+  pagerDotActive: {
+    color: ColorPallet.brand.primary,
+  },
+  pagerDotInactive: {
+    color: ColorPallet.brand.secondary,
+  },
+  pagerNavigationButton: {
+    color: ColorPallet.brand.primary,
+  },
+  headerText: {
+    color: ColorPallet.notification.infoText,
+    fontSize: 32,
+    fontWeight: 'bold',
+  },
+  bodyText: {
+    fontSize: 18,
+    fontWeight: 'normal',
+    color: ColorPallet.notification.infoText,
+  },
+  imageDisplayOptions: {
+    fill: ColorPallet.notification.infoText,
+  }
+}
+
+
 export interface Theme {
   ColorPallet: ColorPallet
   TextTheme: TextTheme
@@ -454,6 +497,7 @@ export interface Theme {
   HomeTheme: any
   SettingsTheme: any
   ChatTheme: any
+  OnboardingTheme: any
   heavyOpacity: any
   borderRadius: any
   borderWidth: typeof borderWidth
@@ -470,6 +514,7 @@ export const defaultTheme: Theme = {
   HomeTheme,
   SettingsTheme,
   ChatTheme,
+  OnboardingTheme,
   heavyOpacity,
   borderRadius,
   borderWidth,

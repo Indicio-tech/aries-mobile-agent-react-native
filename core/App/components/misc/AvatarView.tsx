@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { ListItems } from 'theme'
 
 import { hashCode, hashToRGBA } from '../../utils/helpers'
 import { testIdWithKey } from '../../utils/testable'
@@ -10,22 +11,21 @@ interface AvatarViewProps {
 }
 
 const AvatarView: React.FC<AvatarViewProps> = ({ name }) => {
-  const { TextTheme } = useThemeContext()
+  const { TextTheme, ListItems } = useThemeContext()
   const styles = StyleSheet.create({
     avatar: {
+      ...ListItems.avatarCircle,
       width: TextTheme.headingTwo.fontSize * 2,
       height: TextTheme.headingTwo.fontSize * 2,
       margin: 12,
       borderWidth: 3,
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: TextTheme.headingTwo.fontSize,
-      borderColor: TextTheme.headingTwo.color,
     },
   })
   return (
     <View style={[styles.avatar, { borderColor: hashToRGBA(hashCode(name)) }]}>
-      <Text style={[TextTheme.headingTwo, { fontWeight: 'normal' }]} testID={testIdWithKey('AvatarName')}>
+      <Text style={ListItems.avatarText} testID={testIdWithKey('AvatarName')}>
         {name.charAt(0)}
       </Text>
     </View>
