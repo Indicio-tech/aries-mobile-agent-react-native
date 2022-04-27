@@ -92,16 +92,17 @@ const TabStack: React.FC = () => {
                 />
               </View>
             ),
-            tabBarLabel: ({ focused }) => (
-              <Text
-                style={{
-                  ...TabTheme.tabTextStyle,
-                  color: focused ? TabTheme.tabBarActiveTintColor : TabTheme.tabBarInactiveTintColor,
-                }}
-              >
-                {t('TabStack.Scan')}
-              </Text>
-            ),
+            tabBarLabel: () => {null},
+            // ({ focused }) => (
+            //   <Text
+            //     style={{
+            //       ...TabTheme.tabTextStyle,
+            //       color: focused ? TabTheme.tabBarActiveTintColor : TabTheme.tabBarInactiveTintColor,
+            //     }}
+            //   >
+            //     {t('TabStack.Scan')}
+            //   </Text>
+            // ),
             tabBarAccessibilityLabel: t('TabStack.Scan'),
           }}
           // listeners={({ navigation }) => ({

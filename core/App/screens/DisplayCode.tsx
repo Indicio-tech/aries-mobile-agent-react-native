@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native'
-import { useAgent } from '@aries-framework/react-hooks'
+import { ConnectionRecord, ConnectionState } from '@aries-framework/core'
+import { useAgent, useConnectionById } from '@aries-framework/react-hooks'
 import { useTranslation } from 'react-i18next'
 
 import { testIdWithKey } from '../utils/testable'
+import { Screens, TabStacks } from '../types/navigators'
 import Button, { ButtonType } from '../components/buttons/Button'
 import QRContainer from '../components/misc/QRContainer'
-
-// import { displayName } from '../../../app/app.json'
-
-
 
 const DisplayCode = ({ navigation }) => {
   const { agent } = useAgent()
@@ -18,6 +16,8 @@ const DisplayCode = ({ navigation }) => {
 
   const [invitation, setInvitation] = useState({})
   const [value, setValue] = useState('placeholder')
+
+  const connection = useConnectionById(invitation?.connectionRecord?.id)
 
   const styles = StyleSheet.create({
     outerContainer: {
@@ -42,15 +42,24 @@ const DisplayCode = ({ navigation }) => {
   }, [])
 
   useEffect(() => {
-    if (invitation.invitation) {
+    if (invitation?.invitation) {
       const url = invitation.invitation.toUrl({
         domain: agent.agentConfig.mediatorConnectionsInvite.split('?')[0],
       })
       console.log('URL: ', url)
       setValue(url)
     }
+    console.log(invitation?.connectionRecord?.id)
   }, [invitation])
 
+  useEffect(() => {
+    console.log('connection: ', connection)
+    if (connection?.state === ConnectionState.Complete) {
+      navigation.navigate(TabStacks.ContactStack, { screen: Screens.Chat, params: { connectionId: connection?.id } })
+    }
+  }, [connection])
+
+  
 
   return (
     <View style={styles.outerContainer}>

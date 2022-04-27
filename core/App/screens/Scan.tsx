@@ -90,7 +90,7 @@ const Scan: React.FC<ScanProps> = ({ navigation }) => {
 
   useEffect(() => {
     if (connectionId) {
-      navigation.getParent()?.navigate(Stacks.ConnectionStack, { screen: Screens.Connection, params: { connectionId } })
+      navigation.navigate(Stacks.ContactStack, { screen: Screens.Chat, params: { connectionId: connectionId } })
     }
   }, [connectionId])
 
