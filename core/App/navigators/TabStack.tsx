@@ -9,6 +9,7 @@ import { useNotifications } from '../hooks/notifications'
 import { Screens, Stacks, TabStackParams, TabStacks } from '../types/navigators'
 import { useThemeContext } from '../utils/themeContext'
 
+import ConnectStack from './ConnectStack'
 import ContactStack from './ContactStack'
 import CredentialStack from './CredentialStack'
 import HomeStack from './HomeStack'
@@ -75,6 +76,7 @@ const TabStack: React.FC = () => {
         />
         <Tab.Screen
           name={TabStacks.ConnectStack}
+          component={ConnectStack}
           options={{
             tabBarIcon: () => (
               <View
@@ -102,15 +104,15 @@ const TabStack: React.FC = () => {
             ),
             tabBarAccessibilityLabel: t('TabStack.Scan'),
           }}
-          listeners={({ navigation }) => ({
-            tabPress: (e) => {
-              e.preventDefault()
-              navigation.navigate(Stacks.ConnectStack, { screen: Screens.Scan })
-            },
-          })}
-        >
-          {() => <View />}
-        </Tab.Screen>
+          // listeners={({ navigation }) => ({
+          //   tabPress: (e) => {
+          //     e.preventDefault()
+          //     navigation.navigate(Stacks.ConnectStack, { screen: Screens.QRType })
+          //   },
+          // })}
+        />
+          {/* {() => <View />}
+        </Tab.Screen> */}
         <Tab.Screen
           name={TabStacks.ContactStack}
           component={ContactStack}

@@ -315,6 +315,12 @@ export const ListItems = StyleSheet.create({
   contactIcon: {
     color: ColorPallet.grayscale.white,
   },
+  contactTitle: {
+    ...TextTheme.headingFour,
+  },
+  contactDate: {
+    ...TextTheme.caption,
+  },
   recordAttributeLabel: {
     ...TextTheme.normal,
   },

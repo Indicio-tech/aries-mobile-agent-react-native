@@ -22,6 +22,8 @@ export enum Screens {
   Connection = 'Connection',
   OnTheWay = 'On The Way',
   Declined = 'Declined',
+  QRType = 'QR Type',
+  DisplayCode = "Display Code",
 }
 
 export enum Stacks {

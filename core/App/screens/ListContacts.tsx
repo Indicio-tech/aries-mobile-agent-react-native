@@ -1,4 +1,4 @@
-import type { ConnectionRecord } from '@aries-framework/core'
+import { ConnectionRecord, ConnectionState } from '@aries-framework/core'
 
 import { useConnections } from '@aries-framework/react-hooks'
 import React from 'react'
