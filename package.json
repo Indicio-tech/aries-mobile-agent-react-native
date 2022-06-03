@@ -18,7 +18,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@aries-framework/core": "file:aries-framework-core-v0.2.0-alpha-pickup-v2.4.tgz",
+    "@aries-framework/core": "file:aries-framework-core-v0.2.0-URL-Shortening-v1.4.tgz",
+    "@aries-framework/push-notifications": "^0.3.0",
     "@aries-framework/react-hooks": "^0.1.2",
     "@aries-framework/react-native": "^0.2.0-alpha.20",
     "@formatjs/intl-datetimeformat": "^4.2.3",
