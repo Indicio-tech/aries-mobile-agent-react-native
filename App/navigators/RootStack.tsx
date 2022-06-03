@@ -7,7 +7,9 @@ import {
   MediatorPickupStrategy,
   WsOutboundTransport,
 } from '@aries-framework/core'
+import { PushNotificationsFcmModule } from '@aries-framework/push-notifications/'
 import { agentDependencies } from '@aries-framework/react-native'
+import messaging from '@react-native-firebase/messaging'
 import { useNavigation } from '@react-navigation/core'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 import React, { useContext, useEffect, useState } from 'react'
@@ -82,7 +84,7 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
         {
           label: 'Aries Bifold',
           mediatorConnectionsInvite: Config.MEDIATOR_URL,
-          mediatorPickupStrategy: MediatorPickupStrategy.Implicit,
+          mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2,
           walletConfig: { id: 'wallet4', key: '123' },
           autoAcceptConnections: true,
           autoAcceptCredentials: AutoAcceptCredential.ContentApproved,
@@ -99,9 +101,20 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
       newAgent.registerOutboundTransport(wsTransport)
       newAgent.registerOutboundTransport(httpTransport)
 
+      //create push noti module
+      const pushNotificationsFcmModule = newAgent.injectionContainer.resolve(PushNotificationsFcmModule)
+
       await newAgent.initialize()
       setAgent(newAgent) // -> This will set the agent in the global provider
       setAgentInitDone(true)
+
+      const mediatorRecord = await newAgent.mediationRecipient.findDefaultMediator()
+
+      const token = await messaging().getToken
+
+      if (mediatorRecord?.connectionId)
+        pushNotificationsFcmModule.setDeviceInfo(mediatorRecord.connectionId, { deviceToken: token.toString() })
+
       Toast.show({
         type: ToastType.Success,
         text1: 'Wallet initialized',

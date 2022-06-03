@@ -19,6 +19,7 @@ import '@formatjs/intl-datetimeformat/polyfill'
 import '@formatjs/intl-datetimeformat/locale-data/en' // locale-data for en
 import '@formatjs/intl-datetimeformat/add-all-tz' // Add ALL tz data
 
+import firebase from '@react-native-firebase/app'
 import messaging from '@react-native-firebase/messaging'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
@@ -32,6 +33,21 @@ import { name as appName } from './app.json'
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
   // eslint-disable-next-line no-undef
   console.log('Message received in background!', remoteMessage)
+})
+
+let options = {
+  appId: '1:1056666176938:android:0a139411e74b783e1f6fd3',
+  projectId: 'fir-aca-py',
+  apiKey: 'AIzaSyD4167gVAB9-xYkK-DTFtG4erVI83JPo2M',
+}
+const defualtapp = firebase.initializeApp(options, 'test app')
+defualtapp.finally((app) => {
+  // eslint-disable-next-line no-undef
+  console.log(app.messaging().getToken())
+  app.messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+    // eslint-disable-next-line no-undef
+    console.log('Message received in background!', remoteMessage)
+  })
 })
 
 const navigationTheme = {

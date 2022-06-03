@@ -32,6 +32,8 @@ const Scan: React.FC<ScanProps> = ({ navigation }) => {
 
       await agent?.receiveMessage(message)
     } catch (err: unknown) {
+      // eslint-disable-next-line no-console
+      console.log(err)
       const error = new BifoldError(
         'Unable to accept connection',
         'There was a problem while accepting the connection redirection',
@@ -49,20 +51,22 @@ const Scan: React.FC<ScanProps> = ({ navigation }) => {
 
   const handleInvitation = async (url: string): Promise<void> => {
     try {
-      const connectionRecord = await agent?.connections.receiveInvitationFromUrl(url, {
+      const records = await agent?.oob.receiveInvitationFromUrl(url, {
         autoAcceptConnection: true,
       })
 
-      if (!connectionRecord?.id) {
+      if (!records?.connectionRecord?.id) {
         throw new BifoldError(
           'Unable to accept connection',
-          'There was a problem while accepting the connection.',
+          'There was a problem while accepting the connection. ConnectionRecord is sus',
           1024
         )
       }
 
-      setConnectionId(connectionRecord.id)
+      setConnectionId(records.connectionRecord.id)
     } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err)
       const error = new BifoldError(
         'Unable to accept connection',
         'There was a problem while accepting the connection.',
@@ -83,12 +87,11 @@ const Scan: React.FC<ScanProps> = ({ navigation }) => {
 
     try {
       const url = event.data
-      if (isRedirection(url)) {
-        await handleRedirection(url, agent)
-      } else {
-        await handleInvitation(url)
-      }
+
+      await handleInvitation(url)
     } catch (e: unknown) {
+      // eslint-disable-next-line no-console
+      console.log(e)
       const error = new QrCodeScanError(t('Scan.InvalidQrCode'), event.data)
       setQrCodeScanError(error)
     }
