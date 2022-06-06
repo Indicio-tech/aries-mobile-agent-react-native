@@ -1,5 +1,5 @@
 import { CredentialRecord, CredentialState } from '@aries-framework/core'
-import { useCredentialByState } from '@aries-framework/react-hooks'
+import { useConnections, useCredentialByState } from '@aries-framework/react-hooks'
 import React from 'react'
 import { FlatList, View } from 'react-native'
 
@@ -13,8 +13,8 @@ const ListCredentials: React.FC = () => {
     ...useCredentialByState(CredentialState.CredentialReceived),
     ...useCredentialByState(CredentialState.Done),
   ]
+  const { connections } = useConnections()
   const [state] = useStore()
-  const { revoked } = state.credential
   const { ColorPallet } = useTheme()
 
   return (
@@ -34,6 +34,7 @@ const ListCredentials: React.FC = () => {
           <CredentialListItem
             credential={item}
             revoked={true}
+            connectionName={connections.find((c) => c.id === item.connectionId)?.theirLabel}
             // revoked.has(item.id) || revoked.has(item.credentialId)}
           />
         </View>

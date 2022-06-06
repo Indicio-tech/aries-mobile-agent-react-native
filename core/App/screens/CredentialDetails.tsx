@@ -84,10 +84,16 @@ const CredentialDetails: React.FC<CredentialDetailsProps> = ({ navigation, route
 
   useEffect(() => {
     const isRevoked = revoked.has(credential.id) || revoked.has(credential.credentialId)
-    setIsRevoked(isRevoked)
+    setIsRevoked(
+      // isRevoked
+      true
+    )
     const isRevokedMessageDismissed =
       revokedMessageDismissed.has(credential.id) || revokedMessageDismissed.has(credential.credentialId)
-    setIsRevokedMessageHidden(isRevokedMessageDismissed)
+    setIsRevokedMessageHidden(
+      // isRevokedMessageDismissed
+      false
+    )
   }, [])
 
   const dismissRevokedMessage = (credential: CredentialRecord) => {
@@ -102,7 +108,7 @@ const CredentialDetails: React.FC<CredentialDetailsProps> = ({ navigation, route
           {isRevoked && !isRevokedMessageHidden ? (
             <View style={{ marginHorizontal: 15, marginTop: 16 }}>
               <InfoBox
-                notificationType={InfoBoxType.Warn}
+                notificationType={InfoBoxType.Info}
                 title={t('CredentialDetails.CredentialRevokedMessageTitle')}
                 message={t('CredentialDetails.CredentialRevokedMessageBody')}
                 onCallToActionLabel={t('Global.Dismiss')}

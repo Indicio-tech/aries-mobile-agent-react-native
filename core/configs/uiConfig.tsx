@@ -1,7 +1,7 @@
 type uiConfigType = {
-  showScanLabel: boolean,
-  fiveTabDisplay: boolean,
-  navigateOnConnection: boolean,
+  showScanLabel: boolean
+  fiveTabDisplay: boolean
+  navigateOnConnection: boolean
 }
 
 export const uiConfig: uiConfigType = {
@@ -10,5 +10,5 @@ export const uiConfig: uiConfigType = {
   // Determines if the tab bar will display 5 tabs or only 3
   fiveTabDisplay: true,
   // Determines if the app will navigate to the chat screen upon connection or wait for a notification
-  navigateOnConnection: true
+  navigateOnConnection: true,
 }
