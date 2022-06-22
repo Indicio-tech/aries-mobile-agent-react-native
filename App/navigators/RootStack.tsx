@@ -7,7 +7,7 @@ import {
   MediatorPickupStrategy,
   WsOutboundTransport,
 } from '@aries-framework/core'
-import { PushNotificationsFcmModule } from '@aries-framework/push-notifications/'
+import { PushNotificationsFcmModule } from '@aries-framework/push-notifications'
 import { agentDependencies } from '@aries-framework/react-native'
 import messaging from '@react-native-firebase/messaging'
 import { useNavigation } from '@react-navigation/core'
@@ -127,7 +127,7 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
         type: ToastType.Error,
         text1: t('Global.Failure'),
         text2: (e as Error)?.message || t('Error.Unknown'),
-        visibilityTime: 2000,
+        visibilityTime: 20000,
         position: 'bottom',
       })
     }
