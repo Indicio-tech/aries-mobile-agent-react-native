@@ -28,6 +28,8 @@ target 'AriesBifold' do
     :hermes_enabled => true
   )
 
+  pod 'RNSecureRandom', :path => '../node_modules/react-native-securerandom'
+
   target 'AriesBifoldTests' do
     inherit! :complete
     # Pods for testing

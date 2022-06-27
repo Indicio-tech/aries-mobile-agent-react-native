@@ -7,10 +7,14 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-		"postinstall": "patch-package"
+    "postinstall": "patch-package"
+  },
+  "overrides": {
+    "@mattrglobal/bbs-signatures": "@animo-id/react-native-bbs-signatures@0.1.0"
   },
   "dependencies": {
-    "@aries-framework/core": "0.2.0-alpha.20",
+    "@animo-id/react-native-bbs-signatures": "0.1.0",
+    "@aries-framework/core": "./aries-framework-core-v0.3.0-pre-json-ld-creds.11.tgz",
     "@aries-framework/react-hooks": "0.2.0",
     "@aries-framework/react-native": "0.2.0-alpha.20",
     "@formatjs/intl-datetimeformat": "4.2.4",
@@ -31,6 +35,7 @@
     "axios": "0.21.4",
     "i18next": "21.4.0",
     "indy-sdk-react-native": "0.1.20",
+    "isomorphic-webcrypto": "./isomorphic-webcrypto-2.3.9.tgz",
     "lodash.startcase": "4.4.0",
     "patch-package": "^6.4.7",
     "query-string": "7.0.1",
@@ -53,6 +58,7 @@
     "react-native-reanimated": "2.2.4",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.7.2",
+    "react-native-securerandom": "^1.0.0",
     "react-native-splash-screen": "3.3.0",
     "react-native-svg": "12.1.1",
     "react-native-toast-message": "2.0.1",

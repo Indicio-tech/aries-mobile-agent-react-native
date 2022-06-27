@@ -19,7 +19,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@aries-framework/core": "^0.2.0-alpha.20",
+    "@aries-framework/core": "*",
     "@aries-framework/react-hooks": "^0.2.0",
     "@aries-framework/react-native": "^0.2.0-alpha.20",
     "@formatjs/intl-datetimeformat": "^4.2.3",

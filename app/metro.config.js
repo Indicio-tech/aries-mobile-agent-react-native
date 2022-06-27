@@ -25,6 +25,7 @@ for (const packageDir of packageDirs) {
   }, extraNodeModules)
 }
 console.dir(extraExclusionlist)
+extraNodeModules["@mattrglobal/bbs-signatures"] = path.resolve(__dirname + '/node_modules/@animo-id/react-native-bbs-signatures'),
 console.dir(extraNodeModules)
 const { getDefaultConfig } = require('metro-config')
 module.exports = (async () => {
@@ -47,7 +48,7 @@ module.exports = (async () => {
       blacklistRE: exclusionList(extraExclusionlist.map((m) => new RegExp(`^${escape(m)}\\/.*$`))),
       extraNodeModules: extraNodeModules,
       assetExts: assetExts.filter((ext) => ext !== 'svg'),
-      sourceExts: [...sourceExts, 'svg'],
+      sourceExts: [...sourceExts, 'svg', 'cjs'],
     },
     watchFolders,
   };
