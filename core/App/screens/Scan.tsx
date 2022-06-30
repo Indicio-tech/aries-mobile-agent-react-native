@@ -38,18 +38,18 @@ const Scan: React.FC<ScanProps> = ({ navigation }) => {
 
   const handleInvitation = async (url: string): Promise<void> => {
     try {
-      const connectionRecord = await agent?.connections.receiveInvitationFromUrl(url, {
+      const outOfBandRecord = await agent?.oob.receiveInvitationFromUrl(url, {
         autoAcceptConnection: true,
       })
 
-      if (!connectionRecord?.id) {
-        throw new Error('Connection does not have an ID')
-      }
-
-      navigation.getParent()?.navigate(Stacks.ConnectionStack, {
-        screen: Screens.Connection,
-        params: { connectionId: connectionRecord.id },
-      })
+      // if (!connectionRecord?.id) {
+      //   throw new Error('Connection does not have an ID')
+      // }
+      // navigation.goBack()
+      // navigation.getParent()?.navigate(Stacks.ConnectionStack, {
+      //   screen: Screens.Connection,
+      //   params: { connectionId: connectionRecord.id },
+      // })
     } catch (err: unknown) {
       const error = new BifoldError(t('Error.Title1031'), t('Error.Message1031'), (err as Error).message, 1031)
       throw error

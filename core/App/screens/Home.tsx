@@ -1,5 +1,5 @@
 import { CredentialRecord, CredentialState } from '@aries-framework/core'
-import { useCredentialByState } from '@aries-framework/react-hooks'
+import { useCredentialByState, useAgent } from '@aries-framework/react-hooks'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { useEffect, useMemo } from 'react'
@@ -63,6 +63,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
       ...HomeTheme.link,
     },
   })
+
 
   useMemo(() => {
     async function init() {
