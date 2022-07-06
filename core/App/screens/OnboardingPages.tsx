@@ -3,9 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, View } from 'react-native'
 import { SvgProps } from 'react-native-svg'
 
+import AppLogo from '../assets/img/app-logo.svg'
 import CredentialList from '../assets/img/credential-list.svg'
 import ScanShare from '../assets/img/scan-share.svg'
+import SecureCredential from '../assets/img/secure-credential.svg'
 import SecureImage from '../assets/img/secure-image.svg'
+import SecureMessage from '../assets/img/secure-message.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
 import { GenericFn } from '../types/fn'
 import { testIdWithKey } from '../utils/testable'
@@ -89,18 +92,6 @@ const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
   return (
     <>
-      <View style={{ alignItems: 'center' }}>
-        <SecureImage {...imageDisplayOptions} />
-      </View>
-      <View style={{ marginLeft: 20, marginRight: 20, marginTop: 30 }}>
-        <Text style={[styles.headerText, { fontSize: 18 }]} testID={testIdWithKey('HeaderText')}>
-          Ornare suspendisse sed nisi lacus
-        </Text>
-        <Text style={[styles.bodyText, { marginTop: 20 }]} testID={testIdWithKey('BodyText')}>
-          Enim facilisis gravida neque convallis a cras semper. Suscipit adipiscing bibendum est ultricies integer quis
-          auctor elit sed.
-        </Text>
-      </View>
       <View style={{ marginTop: 'auto', marginBottom: 20, paddingHorizontal: 20 }}>
         <Button
           title={t('Global.GetStarted')}
@@ -114,16 +105,21 @@ const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   )
 }
 
-const guides: Array<{ image: React.FC<SvgProps>; title: string; body: string }> = [
+const guides: Array<{ image: React.FC<SvgProps>; title: [string, React.FC<SvgProps>]; body: string }> = [
   {
-    image: CredentialList,
-    title: 'Lorem ipsum dolor sit amet',
-    body: 'Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus.',
+    image: AppLogo,
+    title: 'Welcome to' + AppLogo,
+    body: "It's more than just a wallet",
   },
   {
-    image: ScanShare,
-    title: 'Excepteur sint occaecat ',
-    body: 'Mollis aliquam ut porttitor leo a diam sollicitudin tempor.',
+    image: SecureCredential,
+    title: 'Secure your personal information',
+    body: 'Decide what you share\nand who you share it with',
+  },
+  {
+    image: SecureMessage,
+    title: 'Connect and message with confidence',
+    body: 'Trust your digital connections',
   },
 ]
 
@@ -132,12 +128,12 @@ const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, 
   const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
   return (
     <>
-      <View style={{ alignItems: 'center' }}>{image(imageDisplayOptions)}</View>
+      <View style={{ alignItems: 'center', marginTop: 10 }}>{image(imageDisplayOptions)}</View>
       <View style={{ marginLeft: 20, marginRight: 20, marginTop: 30 }}>
-        <Text style={[styles.headerText, { fontSize: 18 }]} testID={testIdWithKey('HeaderText')}>
+        <Text style={[styles.headerText, { fontSize: 40, textAlign: 'center' }]} testID={testIdWithKey('HeaderText')}>
           {title}
         </Text>
-        <Text style={[styles.bodyText, { marginTop: 20 }]} testID={testIdWithKey('BodyText')}>
+        <Text style={[styles.bodyText, { marginTop: 30, textAlign: 'center' }]} testID={testIdWithKey('BodyText')}>
           {body}
         </Text>
       </View>
