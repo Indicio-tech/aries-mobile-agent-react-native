@@ -1,3 +1,4 @@
+import { AriesFrameworkError, AutoAcceptCredential } from '@aries-framework/core'
 import { useAgent, useCredentialById } from '@aries-framework/react-hooks'
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { useState } from 'react'
@@ -63,10 +64,11 @@ const CredentialOffer: React.FC<CredentialOfferProps> = ({ navigation, route }) 
     try {
       setAcceptModalVisible(true)
 
-      await agent.credentials.acceptOffer(credential.id)
+      await agent.credentials.acceptOffer({ credentialRecordId: credentialId, autoAcceptCredential: AutoAcceptCredential.Always })
     } catch (err: unknown) {
       setButtonsVisible(true)
       const error = new BifoldError(t('Error.Title1024'), t('Error.Message1024'), (err as Error).message, 1024)
+      console.log(error)
       dispatch({
         type: DispatchAction.ERROR_ADDED,
         payload: [{ error }],

@@ -83,15 +83,16 @@ const CredentialDetails: React.FC<CredentialDetailsProps> = ({ navigation, route
   }
 
   useEffect(() => {
-    const isRevoked = revoked.has(credential.id) || revoked.has(credential.credentialId)
-    setIsRevoked(isRevoked)
-    const isRevokedMessageDismissed =
-      revokedMessageDismissed.has(credential.id) || revokedMessageDismissed.has(credential.credentialId)
-    setIsRevokedMessageHidden(isRevokedMessageDismissed)
+    // const isRevoked = revoked.has(credential.id) || revoked.has(credential.credentialId)
+    // setIsRevoked(isRevoked)
+    // const isRevokedMessageDismissed =
+    //   revokedMessageDismissed.has(credential.id) || revokedMessageDismissed.has(credential.credentialId)
+    // setIsRevokedMessageHidden(isRevokedMessageDismissed)
+    credential.revocationNotification == undefined ? setIsRevoked(false) : setIsRevoked(true)
   }, [])
 
   const dismissRevokedMessage = (credential: CredentialRecord) => {
-    dispatch({ type: DispatchAction.CREDENTIAL_REVOKED_MESSAGE_DISMISSED, payload: [credential] })
+    // dispatch({ type: DispatchAction.CREDENTIAL_REVOKED_MESSAGE_DISMISSED, payload: [credential] })
     setIsRevokedMessageHidden(true)
   }
 

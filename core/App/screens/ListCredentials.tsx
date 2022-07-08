@@ -1,5 +1,5 @@
 import { CredentialRecord, CredentialState } from '@aries-framework/core'
-import { useCredentialByState, useAgent } from '@aries-framework/react-hooks'
+import { useCredentialByState, useAgent, useCredentials } from '@aries-framework/react-hooks'
 import { useNavigation } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
@@ -23,13 +23,15 @@ const ListCredentials: React.FC = () => {
   const { ColorPallet } = useTheme()
   const navigation = useNavigation<StackNavigationProp<CredentialStackParams>>()
 
-  const {agent} = useAgent ()
+  const { agent } = useAgent()
 
-  console.log(credentials[0].metadata)
-  let testCred = credentials[0]
-  testCred.metadata.add('revoked_seen', 'revoked!')
-  const credService = agent.credentials.getService('v1')
-  credService.update(testCred)
+  console.log(JSON.stringify(credentials))
+
+  // console.log(credentials[0].metadata)
+  // let testCred = credentials[0]
+  // testCred.metadata.add('revoked_seen', 'revoked!')
+  // const credService = agent?.credentials.getService('v1')
+  // credService?.update(testCred)
 
   return (
     <FlatList

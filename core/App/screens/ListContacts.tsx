@@ -15,6 +15,7 @@ interface ListContactsProps {
 const ListContacts: React.FC<ListContactsProps> = ({ navigation }) => {
   const { connections } = useConnections()
   const { ColorPallet } = useTheme()
+  console.log(connections)
   return (
     <FlatList
       style={{ backgroundColor: ColorPallet.brand.primaryBackground }}

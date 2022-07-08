@@ -9,8 +9,11 @@ interface Notifications {
 export function useNotifications(): Notifications {
   const offers = useCredentialByState(CredentialState.OfferReceived)
   const proofs = useProofByState(ProofState.RequestReceived)
+  const revoked = useCredentialByState(CredentialState.Done).filter((credential: CredentialRecord) => {
+    if (credential.revocationNotification !== undefined && credential.metadata.ackRevoked !== true) {return credential}
+  })
 
-  const notifications = [...offers, ...proofs].sort(
+  const notifications = [...offers, ...proofs, ...revoked].sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   )
 
