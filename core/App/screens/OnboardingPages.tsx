@@ -4,10 +4,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import { SvgProps } from 'react-native-svg'
 
 import AppLogo from '../assets/img/app-logo.svg'
-import CredentialList from '../assets/img/credential-list.svg'
-import ScanShare from '../assets/img/scan-share.svg'
+import HoldrLogo from '../assets/img/holdr-logo.svg'
+import IndicioLogo from '../assets/img/indicio-logo.svg'
 import SecureCredential from '../assets/img/secure-credential.svg'
-import SecureImage from '../assets/img/secure-image.svg'
 import SecureMessage from '../assets/img/secure-message.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
 import { GenericFn } from '../types/fn'
@@ -21,6 +20,7 @@ export const createCarouselStyle = (OnboardingTheme: any): OnboardingStyleSheet 
       ...OnboardingTheme.container,
       flex: 1,
       alignItems: 'center',
+      marginTop: 10,
     },
     carouselContainer: {
       ...OnboardingTheme.carouselContainer,
@@ -55,87 +55,166 @@ export const createCarouselStyle = (OnboardingTheme: any): OnboardingStyleSheet 
   })
 }
 
-export const createStyles = (OnboardingTheme: any) => {
+export const createDisplayStyle = (OnboardingTheme: any) => {
   return StyleSheet.create({
     headerText: {
       ...OnboardingTheme.headerText,
+      textAlign: 'center',
+      width: '100%',
     },
     bodyText: {
       ...OnboardingTheme.bodyText,
-      flexShrink: 1,
+      textAlign: 'center',
+      width: '100%',
     },
-    point: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginTop: 10,
-      marginRight: 20,
-      marginBottom: 10,
+    small: {
+      height: 100,
+      width: 100,
     },
-    icon: {
-      marginRight: 10,
+    medium: {
+      height: 200,
+      width: 200,
+    },
+    wide: {
+      height: 80,
+      width: 220,
     },
   })
 }
 
-const createImageDisplayOptions = (OnboardingTheme: any) => {
-  return {
-    ...OnboardingTheme.imageDisplayOptions,
-    height: 180,
-    width: 180,
-  }
+export const createStyles = (OnboardingTheme: any) => {
+  return StyleSheet.create({
+    image: {},
+    container: {},
+    header: {},
+    body: {},
+    footer: {},
+  })
 }
 
-const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
+const completeOnboarding = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   const { t } = useTranslation()
-  const styles = createStyles(OnboardingTheme)
-  const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
+  const styles = createDisplayStyle(OnboardingTheme)
   return (
     <>
-      <View style={{ marginTop: 'auto', marginBottom: 20, paddingHorizontal: 20 }}>
-        <Button
-          title={t('Global.GetStarted')}
-          accessibilityLabel={t('Global.GetStarted')}
-          testID={testIdWithKey('GetStarted')}
-          onPress={onTutorialCompleted}
-          buttonType={ButtonType.Primary}
-        />
+      <View style={{ flex: 1, alignItems: 'center' }}>
+        <View
+          style={{
+            flex: 2,
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {SecureMessage(styles.medium)}
+        </View>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Text style={[styles.headerText]} testID={testIdWithKey('HeaderText')}>
+            Connect and{'\n'}message with{'\n'}confidence
+          </Text>
+        </View>
+        <View
+          style={{
+            flex: 2,
+            width: '100%',
+            alignContent: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text style={[styles.bodyText, { marginTop: 20 }]} testID={testIdWithKey('BodyText')}>
+            Trust your digital connections
+          </Text>
+          <View style={{ marginTop: 'auto', marginBottom: 20, paddingHorizontal: 20 }}>
+            <Button
+              title={t('Global.GetStarted')}
+              accessibilityLabel={t('Global.GetStarted')}
+              testID={testIdWithKey('GetStarted')}
+              onPress={onTutorialCompleted}
+              buttonType={ButtonType.Primary}
+            />
+          </View>
+        </View>
       </View>
     </>
   )
 }
 
-const guides: Array<{ image: React.FC<SvgProps>; title: [string, React.FC<SvgProps>]; body: string }> = [
+interface GuideProps {
+  image: React.FC<SvgProps>
+  title: string
+  titleImage?: React.FC<SvgProps>
+  body: string
+  footerImage?: React.FC<SvgProps>
+  button?: unknown
+}
+
+const guides: Array<GuideProps> = [
   {
     image: AppLogo,
-    title: 'Welcome to' + AppLogo,
-    body: "It's more than just a wallet",
+    title: 'Welcome to',
+    titleImage: HoldrLogo,
+    body: "It's more than just a digital wallet",
+    footerImage: IndicioLogo,
   },
   {
     image: SecureCredential,
-    title: 'Secure your personal information',
+    title: 'Secure your\npersonal\ninformation',
     body: 'Decide what you share\nand who you share it with',
-  },
-  {
-    image: SecureMessage,
-    title: 'Connect and message with confidence',
-    body: 'Trust your digital connections',
   },
 ]
 
-const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, OnboardingTheme: any) => {
-  const styles = createStyles(OnboardingTheme)
-  const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
+const createPageWith = (props: GuideProps, OnboardingTheme: any) => {
+  const styles = createDisplayStyle(OnboardingTheme)
   return (
     <>
-      <View style={{ alignItems: 'center', marginTop: 10 }}>{image(imageDisplayOptions)}</View>
-      <View style={{ marginLeft: 20, marginRight: 20, marginTop: 30 }}>
-        <Text style={[styles.headerText, { fontSize: 40, textAlign: 'center' }]} testID={testIdWithKey('HeaderText')}>
-          {title}
-        </Text>
-        <Text style={[styles.bodyText, { marginTop: 30, textAlign: 'center' }]} testID={testIdWithKey('BodyText')}>
-          {body}
-        </Text>
+      <View style={{ flex: 1, alignItems: 'center' }}>
+        <View style={{ flex: 2, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
+          {props.image(styles.medium)}
+        </View>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Text style={[styles.headerText]} testID={testIdWithKey('HeaderText')}>
+            {props.title}
+          </Text>
+          {props.titleImage ? (
+            <View
+              style={{
+                alignItems: 'center',
+                width: '100%',
+              }}
+            >
+              {props.titleImage(styles.wide)}
+            </View>
+          ) : (
+            <></>
+          )}
+        </View>
+        <View
+          style={{
+            flex: 2,
+            width: '100%',
+            alignContent: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text style={[styles.bodyText, { marginTop: 30 }]} testID={testIdWithKey('BodyText')}>
+            {props.body}
+          </Text>
+          {props.footerImage ? <View style={{ alignItems: 'center' }}>{props.footerImage(styles.small)}</View> : <></>}
+        </View>
       </View>
     </>
   )
@@ -143,8 +222,8 @@ const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, 
 
 const OnboardingPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any): Array<Element> => {
   return [
-    ...guides.map((g) => createPageWith(g.image, g.title, g.body, OnboardingTheme)),
-    customPages(onTutorialCompleted, OnboardingTheme),
+    ...guides.map((guide) => createPageWith(guide, OnboardingTheme)),
+    completeOnboarding(onTutorialCompleted, OnboardingTheme),
   ]
 }
 

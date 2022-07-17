@@ -166,7 +166,7 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
           options={() => ({
             title: t('Screens.Onboarding'),
             headerTintColor: OnboardingTheme.headerTintColor,
-            headerShown: true,
+            headerShown: false,
             gestureEnabled: false,
             headerLeft: () => false,
           })}

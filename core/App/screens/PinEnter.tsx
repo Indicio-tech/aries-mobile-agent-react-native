@@ -5,6 +5,7 @@ import * as Keychain from 'react-native-keychain'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import Button, { ButtonType } from '../components/buttons/Button'
+import QuestionAnswer from '../components/chat/QuestionAnswer/QuestionAnswer'
 import TextInput from '../components/inputs/TextInput'
 import { useTheme } from '../contexts/theme'
 import { testIdWithKey } from '../utils/testable'
@@ -62,6 +63,7 @@ const PinEnter: React.FC<PinEnterProps> = ({ setAuthenticated }) => {
           checkPin(pin)
         }}
       />
+      <QuestionAnswer />
     </SafeAreaView>
   )
 }
