@@ -92,6 +92,7 @@ export const createStyles = (OnboardingTheme: any) => {
   })
 }
 
+//This entire repeated code block exists for the sole purpose of making the button appear on Page 3. How do I condense this?
 const completeOnboarding = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   const { t } = useTranslation()
   const styles = createDisplayStyle(OnboardingTheme)
@@ -169,6 +170,7 @@ const guides: Array<GuideProps> = [
     body: 'Decide what you share\nand who you share it with',
   },
 ]
+//Are line breaks problematic?
 
 const createPageWith = (props: GuideProps, OnboardingTheme: any) => {
   const styles = createDisplayStyle(OnboardingTheme)
