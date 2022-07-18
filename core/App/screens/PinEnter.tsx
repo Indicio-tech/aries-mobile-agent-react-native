@@ -63,7 +63,6 @@ const PinEnter: React.FC<PinEnterProps> = ({ setAuthenticated }) => {
           checkPin(pin)
         }}
       />
-      <QuestionAnswer />
     </SafeAreaView>
   )
 }
