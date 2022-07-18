@@ -82,66 +82,32 @@ export const createDisplayStyle = (OnboardingTheme: any) => {
   })
 }
 
-export const createStyles = (OnboardingTheme: any) => {
-  return StyleSheet.create({
-    image: {},
-    container: {},
-    header: {},
-    body: {},
-    footer: {},
-  })
-}
-
-//This entire repeated code block exists for the sole purpose of making the button appear on Page 3. How do I condense this?
-const completeOnboarding = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
+const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   const { t } = useTranslation()
-  const styles = createDisplayStyle(OnboardingTheme)
+  const styles = createStyles(OnboardingTheme)
+  const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
   return (
     <>
-      <View style={{ flex: 1, alignItems: 'center' }}>
-        <View
-          style={{
-            flex: 2,
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          {SecureMessage(styles.medium)}
-        </View>
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-            alignContent: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Text style={[styles.headerText]} testID={testIdWithKey('HeaderText')}>
-            Connect and{'\n'}message with{'\n'}confidence
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 2,
-            width: '100%',
-            alignContent: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Text style={[styles.bodyText, { marginTop: 20 }]} testID={testIdWithKey('BodyText')}>
-            Trust your digital connections
-          </Text>
-          <View style={{ marginTop: 'auto', marginBottom: 20, paddingHorizontal: 20 }}>
-            <Button
-              title={t('Global.GetStarted')}
-              accessibilityLabel={t('Global.GetStarted')}
-              testID={testIdWithKey('GetStarted')}
-              onPress={onTutorialCompleted}
-              buttonType={ButtonType.Primary}
-            />
-          </View>
-        </View>
+      <View style={{ alignItems: 'center' }}>
+        <SecureImage {...imageDisplayOptions} />
+      </View>
+      <View style={{ marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+        <Text style={[styles.headerText, { fontSize: 18 }]} testID={testIdWithKey('HeaderText')}>
+          Ornare suspendisse sed nisi lacus
+        </Text>
+        <Text style={[styles.bodyText, { marginTop: 20 }]} testID={testIdWithKey('BodyText')}>
+          Enim facilisis gravida neque convallis a cras semper. Suscipit adipiscing bibendum est ultricies integer quis
+          auctor elit sed.
+        </Text>
+      </View>
+      <View style={{ marginTop: 'auto', marginBottom: 20, paddingHorizontal: 20 }}>
+        <Button
+          title={t('Global.GetStarted')}
+          accessibilityLabel={t('Global.GetStarted')}
+          testID={testIdWithKey('GetStarted')}
+          onPress={onTutorialCompleted}
+          buttonType={ButtonType.Primary}
+        />
       </View>
     </>
   )
@@ -153,7 +119,7 @@ interface GuideProps {
   titleImage?: React.FC<SvgProps>
   body: string
   footerImage?: React.FC<SvgProps>
-  button?: unknown
+  button?: boolean
 }
 
 const guides: Array<GuideProps> = [
@@ -166,13 +132,19 @@ const guides: Array<GuideProps> = [
   },
   {
     image: SecureCredential,
-    title: 'Secure your\npersonal\ninformation',
-    body: 'Decide what you share\nand who you share it with',
+    title: 'Secure your personal information',
+    body: 'Decide what you share and who you share it with',
+  },
+  {
+    image: SecureMessage,
+    title: 'Connect and message with confidence',
+    body: 'Trust your digital connections',
+    button: true,
   },
 ]
-//Are line breaks problematic?
 
-const createPageWith = (props: GuideProps, OnboardingTheme: any) => {
+const createPageWith = (props: GuideProps, OnboardingTheme: any, onTutorialCompleted?: GenericFn) => {
+  const { t } = useTranslation()
   const styles = createDisplayStyle(OnboardingTheme)
   return (
     <>
@@ -183,7 +155,7 @@ const createPageWith = (props: GuideProps, OnboardingTheme: any) => {
         <View
           style={{
             flex: 1,
-            width: '100%',
+            width: '70%',
             alignContent: 'center',
             justifyContent: 'center',
           }}
@@ -191,7 +163,7 @@ const createPageWith = (props: GuideProps, OnboardingTheme: any) => {
           <Text style={[styles.headerText]} testID={testIdWithKey('HeaderText')}>
             {props.title}
           </Text>
-          {props.titleImage ? (
+          {props.titleImage && (
             <View
               style={{
                 alignItems: 'center',
@@ -200,22 +172,34 @@ const createPageWith = (props: GuideProps, OnboardingTheme: any) => {
             >
               {props.titleImage(styles.wide)}
             </View>
-          ) : (
-            <></>
           )}
         </View>
         <View
           style={{
             flex: 2,
             width: '100%',
-            alignContent: 'center',
+            alignItems: 'center',
             justifyContent: 'space-between',
           }}
         >
-          <Text style={[styles.bodyText, { marginTop: 30 }]} testID={testIdWithKey('BodyText')}>
+          <Text
+            style={[styles.bodyText, { marginTop: 30, paddingHorizontal: '20%' }]}
+            testID={testIdWithKey('BodyText')}
+          >
             {props.body}
           </Text>
-          {props.footerImage ? <View style={{ alignItems: 'center' }}>{props.footerImage(styles.small)}</View> : <></>}
+          {props.footerImage && <View>{props.footerImage(styles.small)}</View>}
+          {props.button && (
+            <View style={{ marginTop: 'auto', marginBottom: 20, width: '80%' }}>
+              <Button
+                title={t('Global.GetStarted')}
+                accessibilityLabel={t('Global.GetStarted')}
+                testID={testIdWithKey('GetStarted')}
+                onPress={onTutorialCompleted}
+                buttonType={ButtonType.Primary}
+              />
+            </View>
+          )}
         </View>
       </View>
     </>
@@ -223,10 +207,7 @@ const createPageWith = (props: GuideProps, OnboardingTheme: any) => {
 }
 
 const OnboardingPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any): Array<Element> => {
-  return [
-    ...guides.map((guide) => createPageWith(guide, OnboardingTheme)),
-    completeOnboarding(onTutorialCompleted, OnboardingTheme),
-  ]
+  return [...guides.map((guide) => createPageWith(guide, OnboardingTheme, onTutorialCompleted))]
 }
 
 export default OnboardingPages
