@@ -17,7 +17,7 @@ interface PinInputProps {
 }
 
 const PinInput: React.FC<PinInputProps> = ({ label, onPinChanged, testID, accessibilityLabel, autoFocus = false }) => {
-  // const accessible = accessibilityLabel && accessibilityLabel !== '' ? true : false
+  const accessible = accessibilityLabel && accessibilityLabel !== '' ? true : false
   const [pin, setPin] = useState('')
   const [showPin, setShowPin] = useState(false)
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
