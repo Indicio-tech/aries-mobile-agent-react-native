@@ -26,7 +26,7 @@ const Chat: React.FC<ChatProps> = ({ navigation, route }) => {
       // Limit string to 30 chars
       headerLeft: () => (
         <HeaderLeftBack
-          title={'Back'}
+          title={''}
           onPress={() => navigation.getParent()?.navigate(TabStacks.ContactStack, { screen: Screens.Contacts })}
         />
       ),

@@ -41,7 +41,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
     },
     rowContainer: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: offset,
     },

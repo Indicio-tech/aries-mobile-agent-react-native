@@ -66,9 +66,8 @@ const DisplayCode = ({ navigation }: any) => {
     if (connection?.state === ConnectionState.Complete) {
       if (uiConfig.navigateOnConnection) {
         navigation.goBack()
-        navigation.navigate(Stacks.ContactStack, {
-          screen: Screens.Chat,
-          params: { connectionId: connection.id },
+        navigation.navigate(Stacks.HomeStack, {
+          screen: Screens.Home,
         })
       } else {
         navigation.goBack()

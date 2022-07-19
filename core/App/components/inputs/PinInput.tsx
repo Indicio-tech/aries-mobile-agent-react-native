@@ -17,7 +17,7 @@ interface PinInputProps {
 }
 
 const PinInput: React.FC<PinInputProps> = ({ label, onPinChanged, testID, accessibilityLabel, autoFocus = false }) => {
-  // const accessible = accessibilityLabel && accessibilityLabel !== '' ? true : false
+  const accessible = accessibilityLabel && accessibilityLabel !== '' ? true : false
   const [pin, setPin] = useState('')
   const [showPin, setShowPin] = useState(false)
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -54,7 +54,7 @@ const PinInput: React.FC<PinInputProps> = ({ label, onPinChanged, testID, access
       color: PinInputTheme.cellText.hidden,
       fontSize: 40,
       textAlign: 'center',
-      lineHeight: 48,
+      lineHeight: 42,
     },
     cellTextVisible: {
       ...TextTheme.normal,

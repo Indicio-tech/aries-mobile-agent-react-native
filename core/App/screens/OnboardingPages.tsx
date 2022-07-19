@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, View } from 'react-native'
 import { SvgProps } from 'react-native-svg'
 
-import CredentialList from '../assets/img/credential-list.svg'
-import ScanShare from '../assets/img/scan-share.svg'
-import SecureImage from '../assets/img/secure-image.svg'
+import AppLogo from '../assets/img/app-logo.svg'
+import HoldrLogo from '../assets/img/holdr-logo.svg'
+import IndicioLogo from '../assets/img/indicio-logo.svg'
+import SecureCredential from '../assets/img/secure-credential.svg'
+import SecureMessage from '../assets/img/secure-message.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
 import { GenericFn } from '../types/fn'
 import { testIdWithKey } from '../utils/testable'
@@ -18,6 +20,7 @@ export const createCarouselStyle = (OnboardingTheme: any): OnboardingStyleSheet 
       ...OnboardingTheme.container,
       flex: 1,
       alignItems: 'center',
+      marginTop: 10,
     },
     carouselContainer: {
       ...OnboardingTheme.carouselContainer,
@@ -91,11 +94,11 @@ const createImageDisplayOptions = (OnboardingTheme: any) => {
 const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   const { t } = useTranslation()
   const styles = createStyles(OnboardingTheme)
-  const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
+  // const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
   return (
     <>
       <View style={{ alignItems: 'center' }}>
-        <SecureImage {...imageDisplayOptions} />
+        {/* <SecureImage {...imageDisplayOptions} /> */}
       </View>
       <View style={{ marginLeft: 20, marginRight: 20, marginTop: 30 }}>
         <Text style={[styles.headerText, { fontSize: 18 }]} testID={testIdWithKey('HeaderText')}>
@@ -130,14 +133,22 @@ interface GuideProps {
 
 const guides: Array<GuideProps> = [
   {
-    image: CredentialList,
-    title: 'Lorem ipsum dolor sit amet',
-    body: 'Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus.',
+    image: AppLogo,
+    title: 'Welcome to',
+    titleImage: HoldrLogo,
+    body: "It's more than just a digital wallet",
+    footerImage: IndicioLogo,
   },
   {
-    image: ScanShare,
-    title: 'Excepteur sint occaecat ',
-    body: 'Mollis aliquam ut porttitor leo a diam sollicitudin tempor.',
+    image: SecureCredential,
+    title: 'Secure your personal information',
+    body: 'Decide what you share and who you share it with',
+  },
+  {
+    image: SecureMessage,
+    title: 'Connect and message with confidence',
+    body: 'Trust your digital connections',
+    button: true,
   },
 ]
 
@@ -202,7 +213,7 @@ const createPageWith = (props: GuideProps, OnboardingTheme: any, onTutorialCompl
 const OnboardingPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any): Array<Element> => {
   return [
     ...guides.map((guide) => createPageWith(guide, OnboardingTheme, onTutorialCompleted)),
-    customPages(onTutorialCompleted, OnboardingTheme),
+    // customPages(onTutorialCompleted, OnboardingTheme),
   ]
 }
 

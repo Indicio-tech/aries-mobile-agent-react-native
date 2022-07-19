@@ -38,7 +38,7 @@ import DeliveryStack from './DeliveryStack'
 import NotificationStack from './NotificationStack'
 import SettingStack from './SettingStack'
 import TabStack from './TabStack'
-import { createDefaultStackOptions } from './defaultStackOptions'
+import { createDefaultStackOptions, createIntroStackOptions } from './defaultStackOptions'
 
 interface RootStackProps {
   setAgent: React.Dispatch<React.SetStateAction<Agent | undefined>>
@@ -57,6 +57,7 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
 
   const theme = useTheme()
   const defaultStackOptions = createDefaultStackOptions(theme)
+  const introStackOptions = createIntroStackOptions(theme)
   const OnboardingTheme = theme.OnboardingTheme
   const { pages, terms, privacy, splash } = useConfiguration()
   const { getWalletID, getKeyForPIN } = useAuth()
@@ -201,14 +202,13 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
     const Stack = createStackNavigator()
     const carousel = createCarouselStyle(OnboardingTheme)
     return (
-      <Stack.Navigator initialRouteName={Screens.Splash} screenOptions={{ ...defaultStackOptions, headerShown: false }}>
+      <Stack.Navigator initialRouteName={Screens.Splash} screenOptions={{ ...introStackOptions, headerShown: false }}>
         <Stack.Screen name={Screens.Splash} component={splash} />
         <Stack.Screen
           name={Screens.Onboarding}
           options={() => ({
             title: t('Screens.Onboarding'),
-            headerTintColor: OnboardingTheme.headerTintColor,
-            headerShown: true,
+            headerShown: false,
             gestureEnabled: false,
             headerLeft: () => false,
           })}
@@ -227,7 +227,6 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
           name={Screens.Privacy}
           options={() => ({
             title: t('Screens.Privacy'),
-            headerTintColor: OnboardingTheme.headerTintColor,
             headerShown: true,
             headerLeft: () => false,
             rightLeft: () => false,
@@ -238,7 +237,6 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
           name={Screens.Terms}
           options={() => ({
             title: t('Screens.Terms'),
-            headerTintColor: OnboardingTheme.headerTintColor,
             headerShown: true,
             headerLeft: () => false,
             rightLeft: () => false,

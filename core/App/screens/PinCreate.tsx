@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Keyboard, StyleSheet, Text } from 'react-native'
+import { Keyboard, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Svg, SvgProps } from 'react-native-svg'
 
+import IndicioPowered from '../assets/img/indicio-logo.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
 import PinInput from '../components/inputs/PinInput'
 import AlertModal from '../components/modals/AlertModal'
@@ -109,9 +111,7 @@ const PinCreate: React.FC<PinCreateProps> = ({ setAuthenticated }) => {
 
   return (
     <SafeAreaView style={[style.container]}>
-      <Text style={[TextTheme.normal, { marginBottom: 16 }]}>
-        <Text style={{ fontWeight: 'bold' }}>{t('PinCreate.RememberPIN')}</Text> {t('PinCreate.PINDisclaimer')}
-      </Text>
+      <Text style={[TextTheme.normal, { marginBottom: 16 }]}>{t('PinCreate.RememberPIN')}</Text>
       <PinInput
         label={t('PinCreate.EnterPINTitle')}
         onPinChanged={setPin}
@@ -148,6 +148,9 @@ const PinCreate: React.FC<PinCreateProps> = ({ setAuthenticated }) => {
           submit={() => setModalState({ ...modalState, visible: false })}
         />
       )}
+      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+        <IndicioPowered width={100} height={100} />
+      </View>
     </SafeAreaView>
   )
 }
