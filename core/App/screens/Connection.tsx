@@ -108,7 +108,7 @@ const Connection: React.FC<ConnectionProps> = ({ navigation, route }) => {
       connection?.state === ConnectionState.Complete && navigation.goBack()
       navigation
         .getParent()
-        ?.navigate(Stacks.ContactStack, { screen: Screens.Chat, params: { connectionId: connection?.id } })
+        ?.navigate(TabStacks.HomeStack, { screen: Screens.Home })
     } else if (notificationRecord) {
       switch (notificationRecord.type) {
         case 'CredentialRecord':

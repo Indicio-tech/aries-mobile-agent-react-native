@@ -108,9 +108,7 @@ const PinCreate: React.FC<PinCreateProps> = ({ setAuthenticated }) => {
 
   return (
     <SafeAreaView style={[style.container]}>
-      <Text style={[TextTheme.normal, { marginBottom: 16 }]}>
-        <Text style={{ fontWeight: 'bold' }}>{t('PinCreate.RememberPIN')}</Text> {t('PinCreate.PINDisclaimer')}
-      </Text>
+      <Text style={[TextTheme.normal, { marginBottom: 16 }]}>{t('PinCreate.RememberPIN')}</Text>
       <PinInput
         label={t('PinCreate.EnterPINTitle')}
         onPinChanged={setPin}
@@ -119,21 +117,21 @@ const PinCreate: React.FC<PinCreateProps> = ({ setAuthenticated }) => {
         autoFocus={true}
       />
       <PinInput
-        label={t('PinCreate.ReenterPIN')}
+        label={t('PinCreate.ConfirmPIN')}
         onPinChanged={(p: string) => {
           setPinTwo(p)
           if (p.length === minPINLength) {
             Keyboard.dismiss()
           }
         }}
-        testID={testIdWithKey('ReenterPIN')}
-        accessibilityLabel={t('PinCreate.ReenterPIN')}
+        testID={testIdWithKey('ConfirmPIN')}
+        accessibilityLabel={t('PinCreate.ConfirmPIN')}
       />
 
       <Button
-        title={t('PinCreate.CreatePIN')}
-        testID={testIdWithKey('CreatePIN')}
-        accessibilityLabel={t('PinCreate.CreatePIN')}
+        title={t('PinCreate.Confirm')}
+        testID={testIdWithKey('Confirm')}
+        accessibilityLabel={t('PinCreate.Confirm')}
         buttonType={ButtonType.Primary}
         onPress={async () => {
           Keyboard.dismiss()

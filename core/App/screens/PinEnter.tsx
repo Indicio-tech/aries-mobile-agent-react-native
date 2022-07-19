@@ -101,7 +101,7 @@ const PinEnter: React.FC<PinEnterProps> = ({ setAuthenticated, checkPIN }) => {
   return (
     <SafeAreaView style={[style.container]}>
       <View style={{ margin: 20 }}>
-        <Image
+        {/* <Image
           source={Assets.img.logoLarge.src}
           style={{
             height: Assets.img.logoLarge.height,
@@ -110,7 +110,8 @@ const PinEnter: React.FC<PinEnterProps> = ({ setAuthenticated, checkPIN }) => {
             alignSelf: 'center',
             marginBottom: 20,
           }}
-        />
+        /> */}
+        <View style={{height: "40%", width: "100%"}}></View>
         <Text style={[TextTheme.normal, { alignSelf: 'center', marginBottom: 16 }]}>{t('PinEnter.EnterPIN')}</Text>
         <PinInput
           onPinChanged={setPin}

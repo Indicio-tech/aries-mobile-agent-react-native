@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native'
 
 interface FontAttributes {
-  fontFamily?: string
+  fontFamily: string
   fontStyle?: 'normal' | 'italic'
   fontSize: number
-  fontWeight: 'normal' | 'bold' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+  fontWeight?: 'normal' | 'bold' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
   color: string
 }
 
@@ -101,21 +101,21 @@ interface Assets {
   }
 }
 
-export const borderRadius = 4
+export const borderRadius = 10
 export const heavyOpacity = 0.7
 export const lightOpacity = 0.35
 export const zeroOpacity = 0.0
 export const borderWidth = 2
 
 const BrandColors: BrandColors = {
-  primary: '#42803E',
-  primaryDisabled: `rgba(53, 130, 63, ${lightOpacity})`,
-  secondary: '#FFFFFFFF',
-  secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
-  highlight: '#FCBA19',
-  primaryBackground: '#000000',
-  secondaryBackground: '#313132',
-  link: '#FFFFFF',
+  primary: '#FF6701',
+  primaryDisabled: `rgba(255, 103, 1, ${lightOpacity})`,
+  secondary: '#333545',
+  secondaryDisabled: `rgba(51, 53, 69, ${heavyOpacity})`,
+  highlight: '#CF0022',
+  primaryBackground: '#FFFFFF',
+  secondaryBackground: '#62627F',
+  link: '#FD9A25',
 }
 
 const SemanticColors: SemanticColors = {
@@ -125,31 +125,31 @@ const SemanticColors: SemanticColors = {
 }
 
 const NotificationColors: NotificationColors = {
-  success: '#313132',
-  successBorder: '#2E8540',
-  successIcon: '#2E8540',
-  successText: '#FFFFFF',
-  info: '#313132',
-  infoBorder: '#0099FF',
-  infoIcon: '#0099FF',
+  success: '#606060',
+  successBorder: '#d8e9c6',
+  successIcon: '#35A700',
+  successText: '#d8e9c6',
+  info: '#62627F',
+  infoBorder: '#FAD744',
+  infoIcon: '#FAD744',
   infoText: '#FFFFFF',
-  warn: '#313132',
-  warnBorder: '#FCBA19',
-  warnIcon: '#FCBA19',
-  warnText: '#FFFFFF',
-  error: '#313132',
-  errorBorder: '#D8292F',
-  errorIcon: '#D8292F',
-  errorText: '#FFFFFF',
+  warn: '#f9e9c6',
+  warnBorder: '#FF6701',
+  warnIcon: '#FF6701',
+  warnText: '#6c3f00',
+  error: '#f2dfde',
+  errorBorder: '#CF0022',
+  errorIcon: '#CF0022',
+  errorText: '#CF0022',
 }
 
 const GrayscaleColors: GrayscaleColors = {
-  black: '#000000',
+  black: '#202020',
   darkGrey: '#313132',
   mediumGrey: '#606060',
   lightGrey: '#D3D3D3',
   veryLightGrey: '#F2F2F2',
-  white: '#FFFFFF',
+  white: '#FCFCFC',
 }
 
 export const ColorPallet: ColorPallet = {
@@ -162,59 +162,63 @@ export const ColorPallet: ColorPallet = {
 export const TextTheme: TextTheme = {
   headingOne: {
     fontSize: 38,
-    fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Bold',
   },
   headingTwo: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Bold',
   },
   headingThree: {
     fontSize: 26,
-    fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Bold',
   },
   headingFour: {
     fontSize: 21,
-    fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Bold',
   },
   normal: {
     fontSize: 18,
     fontWeight: 'normal',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Regular',
   },
   label: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Bold',
   },
   labelTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Bold',
   },
   labelSubtitle: {
     fontSize: 14,
     fontWeight: 'normal',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Regular',
   },
   labelText: {
     fontSize: 10,
     fontWeight: 'normal',
     fontStyle: 'italic',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Regular',
   },
   caption: {
     fontSize: 14,
     fontWeight: 'normal',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
+    fontFamily: 'SourceSansPro-Regular',
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
     color: ColorPallet.notification.infoText,
+    fontFamily: 'SourceSansPro-Bold',
   },
 }
 
@@ -227,9 +231,10 @@ export const Inputs: Inputs = StyleSheet.create({
     borderRadius,
     fontSize: 16,
     backgroundColor: ColorPallet.brand.primaryBackground,
-    color: ColorPallet.notification.infoText,
+    color: ColorPallet.brand.secondary,
     borderWidth: 2,
     borderColor: ColorPallet.brand.secondary,
+    fontFamily: 'SourceSansPro-Regular',
   },
   inputSelected: {
     borderColor: ColorPallet.brand.primary,
@@ -241,62 +246,64 @@ export const Inputs: Inputs = StyleSheet.create({
   },
   singleSelectText: {
     ...TextTheme.normal,
+    color: ColorPallet.grayscale.white,
   },
   singleSelectIcon: {
     color: ColorPallet.grayscale.white,
   },
   checkBoxColor: {
-    color: ColorPallet.brand.primary,
+    color: ColorPallet.notification.infoIcon,
   },
   checkBoxText: {
     ...TextTheme.normal,
+    color: ColorPallet.brand.primary,
   },
 })
 
 export const Buttons = StyleSheet.create({
   primary: {
     padding: 16,
-    borderRadius: 4,
+    borderRadius: 6,
     backgroundColor: ColorPallet.brand.primary,
   },
   primaryDisabled: {
     padding: 16,
-    borderRadius: 4,
+    borderRadius: 6,
     backgroundColor: ColorPallet.brand.primaryDisabled,
   },
   primaryText: {
     ...TextTheme.normal,
-    fontWeight: 'bold',
+    fontFamily: 'SourceSansPro-Bold',
     color: ColorPallet.grayscale.white,
     textAlign: 'center',
   },
   primaryTextDisabled: {
     ...TextTheme.normal,
-    fontWeight: 'bold',
+    fontFamily: 'SourceSansPro-Bold',
     color: ColorPallet.grayscale.white,
     textAlign: 'center',
   },
   secondary: {
     padding: 16,
-    borderRadius: 4,
+    borderRadius: 6,
     borderWidth: 2,
     borderColor: ColorPallet.brand.primary,
   },
   secondaryDisabled: {
     padding: 16,
-    borderRadius: 4,
+    borderRadius: 6,
     borderWidth: 2,
     borderColor: ColorPallet.brand.secondaryDisabled,
   },
   secondaryText: {
     ...TextTheme.normal,
-    fontWeight: 'bold',
+    fontFamily: 'SourceSansPro-Bold',
     color: ColorPallet.brand.primary,
     textAlign: 'center',
   },
   secondaryTextDisabled: {
     ...TextTheme.normal,
-    fontWeight: 'bold',
+    fontFamily: 'SourceSansPro-Bold',
     color: ColorPallet.brand.secondaryDisabled,
     textAlign: 'center',
   },
@@ -314,7 +321,7 @@ export const Buttons = StyleSheet.create({
 
 export const ListItems = StyleSheet.create({
   credentialBackground: {
-    backgroundColor: ColorPallet.brand.secondaryBackground,
+    backgroundColor: ColorPallet.grayscale.lightGrey,
   },
   credentialTitle: {
     ...TextTheme.headingFour,
@@ -323,7 +330,7 @@ export const ListItems = StyleSheet.create({
     ...TextTheme.caption,
   },
   credentialOfferBackground: {
-    backgroundColor: ColorPallet.brand.primaryBackground,
+    backgroundColor: ColorPallet.grayscale.lightGrey,
   },
   credentialOfferTitle: {
     ...TextTheme.headingThree,
@@ -332,20 +339,20 @@ export const ListItems = StyleSheet.create({
     ...TextTheme.normal,
   },
   revoked: {
-    backgroundColor: ColorPallet.notification.error,
-    borderColor: ColorPallet.notification.errorBorder,
+    backgroundColor: ColorPallet.grayscale.darkGrey,
+    // borderColor: ColorPallet.notification.errorBorder,
   },
   contactBackground: {
-    backgroundColor: ColorPallet.brand.secondaryBackground,
+    backgroundColor: ColorPallet.grayscale.lightGrey,
   },
   credentialIconColor: {
     color: ColorPallet.notification.infoText,
   },
   contactTitle: {
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   contactDate: {
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
     marginTop: 10,
   },
   contactIconBackground: {
@@ -358,10 +365,10 @@ export const ListItems = StyleSheet.create({
     ...TextTheme.normal,
   },
   recordContainer: {
-    backgroundColor: ColorPallet.brand.secondaryBackground,
+    backgroundColor: ColorPallet.grayscale.lightGrey,
   },
   recordBorder: {
-    borderBottomColor: ColorPallet.brand.primaryBackground,
+    borderBottomColor: ColorPallet.grayscale.white,
   },
   recordLink: {
     color: ColorPallet.brand.link,
@@ -378,7 +385,7 @@ export const ListItems = StyleSheet.create({
   proofListItem: {
     paddingHorizontal: 25,
     paddingTop: 16,
-    backgroundColor: ColorPallet.brand.primaryBackground,
+    backgroundColor: ColorPallet.grayscale.lightGrey,
     borderTopColor: ColorPallet.brand.secondaryBackground,
     borderBottomColor: ColorPallet.brand.secondaryBackground,
     borderTopWidth: 2,
@@ -402,7 +409,7 @@ export const ListItems = StyleSheet.create({
 export const TabTheme = {
   tabBarStyle: {
     height: 60,
-    backgroundColor: ColorPallet.brand.secondaryBackground,
+    backgroundColor: ColorPallet.brand.secondary,
     shadowOffset: { width: 0, height: -3 },
     shadowRadius: 6,
     shadowColor: ColorPallet.grayscale.black,
@@ -410,12 +417,12 @@ export const TabTheme = {
     borderTopWidth: 0,
     paddingBottom: 0,
   },
-  tabBarActiveTintColor: ColorPallet.brand.primary,
+  tabBarActiveTintColor: ColorPallet.brand.link,
   tabBarInactiveTintColor: ColorPallet.notification.infoText,
   tabBarTextStyle: {
     ...TextTheme.label,
-    fontWeight: 'normal',
-    paddingBottom: 5,
+    fontFamily: 'SourceSansPro-Normal',
+    marginBottom: 5,
   },
   tabBarButtonIconStyle: {
     color: ColorPallet.notification.infoText,
@@ -439,7 +446,7 @@ export const NavigationTheme = {
   colors: {
     primary: ColorPallet.brand.primary,
     background: ColorPallet.brand.primaryBackground,
-    card: ColorPallet.brand.primary,
+    card: ColorPallet.brand.secondary,
     text: ColorPallet.grayscale.white,
     border: ColorPallet.grayscale.white,
     notification: ColorPallet.grayscale.white,
@@ -481,27 +488,29 @@ export const SettingsTheme = {
 
 export const ChatTheme = {
   leftBubble: {
-    backgroundColor: ColorPallet.brand.secondaryBackground,
+    backgroundColor: ColorPallet.grayscale.lightGrey,
     borderRadius: 20,
     padding: 4,
     marginLeft: -4,
   },
   rightBubble: {
-    backgroundColor: ColorPallet.brand.primary,
+    backgroundColor: ColorPallet.brand.secondaryBackground,
     borderRadius: 20,
     padding: 4,
     marginRight: 4,
   },
   leftText: {
-    color: ColorPallet.brand.secondary,
+    color: ColorPallet.grayscale.black,
     fontSize: TextTheme.normal.fontSize,
+    fontFamily: 'SourceSansPro-Regular',
   },
   rightText: {
-    color: ColorPallet.brand.secondary,
+    color: ColorPallet.grayscale.white,
     fontSize: TextTheme.normal.fontSize,
+    fontFamily: 'SourceSansPro-Regular',
   },
   inputToolbar: {
-    backgroundColor: ColorPallet.brand.secondary,
+    backgroundColor: ColorPallet.grayscale.veryLightGrey,
     shadowColor: ColorPallet.brand.primaryDisabled,
     borderRadius: 10,
   },
@@ -509,6 +518,7 @@ export const ChatTheme = {
     lineHeight: undefined,
     fontWeight: '500',
     fontSize: TextTheme.normal.fontSize,
+    fontFamily: 'SourceSansPro-Regular',
   },
   placeholderText: ColorPallet.grayscale.lightGrey,
   sendContainer: {
@@ -531,27 +541,27 @@ export const OnboardingTheme = {
     borderColor: ColorPallet.brand.primary,
   },
   pagerDotActive: {
-    color: ColorPallet.brand.primary,
+    color: ColorPallet.brand.secondary,
   },
   pagerDotInactive: {
-    color: ColorPallet.brand.secondary,
+    color: ColorPallet.brand.primary,
   },
   pagerNavigationButton: {
     color: ColorPallet.brand.primary,
   },
   headerTintColor: ColorPallet.grayscale.white,
   headerText: {
-    color: ColorPallet.notification.infoText,
+    color: ColorPallet.grayscale.darkGrey,
     fontSize: 32,
-    fontWeight: 'bold',
+    fontFamily: 'SourceSansPro-bold',
   },
   bodyText: {
     fontSize: 18,
-    fontWeight: 'normal',
-    color: ColorPallet.notification.infoText,
+    fontFamily: 'SourceSansPro-Regular',
+    color: ColorPallet.grayscale.darkGrey,
   },
   imageDisplayOptions: {
-    fill: ColorPallet.notification.infoText,
+    fill: ColorPallet.grayscale.lightGrey,
   },
 }
 
@@ -561,17 +571,24 @@ const LoadingTheme = {
 
 const PinInputTheme = {
   cell: {
-    backgroundColor: ColorPallet.grayscale.darkGrey,
-    borderColor: ColorPallet.grayscale.darkGrey,
-  },
-  focussedCell: {
+    backgroundColor: ColorPallet.grayscale.lightGrey,
     borderColor: ColorPallet.grayscale.lightGrey,
   },
+  focusedCell: {
+    backgroundColor: ColorPallet.grayscale.veryLightGrey,
+    borderColor: ColorPallet.brand.link,
+  },
+  filledCell: {
+    backgroundColor: ColorPallet.grayscale.veryLightGrey,
+    borderColor: ColorPallet.grayscale.veryLightGrey,
+  },
   cellText: {
-    color: ColorPallet.grayscale.white,
+    hidden: ColorPallet.brand.link,
+    visible: ColorPallet.grayscale.black,
   },
   icon: {
-    color: ColorPallet.grayscale.white,
+    hide: ColorPallet.grayscale.lightGrey,
+    show: ColorPallet.brand.link,
   },
 }
 

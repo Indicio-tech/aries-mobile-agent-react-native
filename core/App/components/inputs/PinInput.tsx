@@ -45,15 +45,23 @@ const PinInput: React.FC<PinInputProps> = ({ label, onPinChanged, testID, access
       marginRight: 8,
     },
     focusedCell: {
-      borderColor: PinInputTheme.focussedCell.borderColor,
+      borderColor: PinInputTheme.focusedCell.borderColor,
+      backgroundColor: PinInputTheme.focusedCell.backgroundColor,
     },
+    filledCell: PinInputTheme.filledCell,
     cellText: {
       ...TextTheme.headingThree,
-      color: PinInputTheme.cellText.color,
+      color: PinInputTheme.cellText.hidden,
+      fontSize: 40,
       textAlign: 'center',
       textAlignVertical: 'center',
       lineHeight: 42,
     },
+    cellTextVisible: {
+      ...TextTheme.normal,
+      fontSize: 24,
+      color: PinInputTheme.cellText.visible,
+    }
   })
 
   return (
@@ -85,10 +93,10 @@ const PinInput: React.FC<PinInputProps> = ({ label, onPinChanged, testID, access
             return (
               <View
                 key={index}
-                style={[style.cell, isFocused && style.focusedCell]}
-                onLayout={getCellOnLayoutHandler(index)}
+                style={[style.cell, isFocused && style.focusedCell, symbol ? style.filledCell : null]}
+                // onLayout={getCellOnLayoutHandler(index)}
               >
-                <Text style={[style.cellText]} maxFontSizeMultiplier={1}>
+                <Text style={[style.cellText, showPin && style.cellTextVisible]} maxFontSizeMultiplier={1}>
                   {child}
                 </Text>
               </View>
@@ -102,7 +110,11 @@ const PinInput: React.FC<PinInputProps> = ({ label, onPinChanged, testID, access
           onPress={() => setShowPin(!showPin)}
           style={[{ marginRight: 8, marginBottom: 32 }]}
         >
-          <Icon color={PinInputTheme.icon.color} name={showPin ? 'visibility-off' : 'visibility'} size={30}></Icon>
+          <Icon
+            color={showPin ? PinInputTheme.icon.show : PinInputTheme.icon.hide}
+            name={'visibility'}
+            size={30}
+          ></Icon>
         </TouchableOpacity>
       </View>
     </View>

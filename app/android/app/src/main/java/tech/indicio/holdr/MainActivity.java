@@ -1,4 +1,4 @@
-package com.ariesbifold;
+package tech.indicio.holdr;
 import android.os.Bundle;
 import android.system.ErrnoException;
 import android.system.Os;
@@ -24,6 +24,6 @@ public class MainActivity extends ReactActivity {
     }
   }
   protected String getMainComponentName() {
-    return "aries-bifold";
+    return "holdr";
   }
 }

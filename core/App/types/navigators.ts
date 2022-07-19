@@ -14,7 +14,7 @@ export enum Screens {
   CredentialDetails = 'Credential Details',
   Notifications = 'Notifications',
   CredentialOffer = 'Credential Offer',
-  ProofRequest = 'Proof Request',
+  ProofRequest = 'Information Requested',
   ProofRequestAttributeDetails = 'Proof Request Attribute Details',
   Settings = 'Settings',
   Language = 'Language',

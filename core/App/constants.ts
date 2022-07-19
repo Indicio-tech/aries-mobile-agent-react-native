@@ -5,7 +5,7 @@ export const defaultLanguage = 'en'
 export const testIdPrefix = 'com.ariesbifold:id/'
 
 // App name used for generating invites / connections
-export const myLabel = 'Aries Bifold'
+export const myLabel = 'Holdr+'
 
 export enum LocalStorageKeys {
   Onboarding = 'OnboardingState',
