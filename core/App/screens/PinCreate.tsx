@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Keyboard, StyleSheet, Text } from 'react-native'
+import { View, Keyboard, StyleSheet, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Svg, SvgProps } from 'react-native-svg'
 
+import IndicioPowered from '../assets/img/indicio-logo.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
 import PinInput from '../components/inputs/PinInput'
 import AlertModal from '../components/modals/AlertModal'
@@ -38,6 +40,7 @@ const PinCreate: React.FC<PinCreateProps> = ({ setAuthenticated }) => {
   const { ColorPallet, TextTheme } = useTheme()
   const style = StyleSheet.create({
     container: {
+      flex: 1,
       backgroundColor: ColorPallet.brand.primaryBackground,
       margin: 20,
     },
@@ -145,8 +148,10 @@ const PinCreate: React.FC<PinCreateProps> = ({ setAuthenticated }) => {
           submit={() => setModalState({ ...modalState, visible: false })}
         />
       )}
+      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+        <IndicioPowered width={100} height={100} />
+      </View>
     </SafeAreaView>
   )
 }
-
 export default PinCreate

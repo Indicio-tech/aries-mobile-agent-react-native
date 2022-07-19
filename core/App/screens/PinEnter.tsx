@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Keyboard, StyleSheet, Text, Image, View, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Svg, SvgProps } from 'react-native-svg'
 
+import HoldrLogo from '../assets/img/holdr-logo.svg'
+import IndicioPowered from '../assets/img/indicio-logo.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
 import PinInput from '../components/inputs/PinInput'
 import AlertModal from '../components/modals/AlertModal'
@@ -31,6 +34,7 @@ const PinEnter: React.FC<PinEnterProps> = ({ setAuthenticated, checkPIN }) => {
   const style = StyleSheet.create({
     container: {
       backgroundColor: ColorPallet.brand.primaryBackground,
+      flex: 1,
     },
   })
 
@@ -101,17 +105,9 @@ const PinEnter: React.FC<PinEnterProps> = ({ setAuthenticated, checkPIN }) => {
   return (
     <SafeAreaView style={[style.container]}>
       <View style={{ margin: 20 }}>
-        {/* <Image
-          source={Assets.img.logoLarge.src}
-          style={{
-            height: Assets.img.logoLarge.height,
-            width: Assets.img.logoLarge.width,
-            resizeMode: Assets.img.logoLarge.resizeMode,
-            alignSelf: 'center',
-            marginBottom: 20,
-          }}
-        /> */}
-        <View style={{height: "40%", width: "100%"}}></View>
+        <View style={{ alignItems: 'center' }}>
+          <HoldrLogo width={300} height={200} />
+        </View>
         <Text style={[TextTheme.normal, { alignSelf: 'center', marginBottom: 16 }]}>{t('PinEnter.EnterPIN')}</Text>
         <PinInput
           onPinChanged={setPin}
@@ -134,6 +130,10 @@ const PinEnter: React.FC<PinEnterProps> = ({ setAuthenticated, checkPIN }) => {
       {modalVisible && (
         <AlertModal title={t('PinEnter.IncorrectPIN')} message="" submit={() => setModalVisible(false)} />
       )}
+
+      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+        <IndicioPowered width={100} height={100} />
+      </View>
     </SafeAreaView>
   )
 }

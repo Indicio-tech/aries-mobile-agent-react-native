@@ -4,7 +4,9 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useMemo } from 'react'
 import { Image, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Svg, SvgProps } from 'react-native-svg'
 
+import HoldrLogo from '../assets/img/holdr-logo.svg'
 import { LocalStorageKeys } from '../constants'
 import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
@@ -74,7 +76,7 @@ const Splash: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Image source={Assets.img.logoLarge.src} style={{ resizeMode: Assets.img.logoLarge.resizeMode }} /> */}
+      <HoldrLogo width={300} height={200} />
     </SafeAreaView>
   )
 }
