@@ -108,7 +108,7 @@ const PinEnter: React.FC<PinEnterProps> = ({ setAuthenticated, checkPIN }) => {
         <View style={{ alignItems: 'center' }}>
           <HoldrLogo width={300} height={200} />
         </View>
-        <Text style={[TextTheme.normal, { alignSelf: 'center', marginBottom: 16 }]}>{t('PinEnter.EnterPIN')}</Text>
+        <Text style={[TextTheme.normal, { marginBottom: 10 }]}>{t('PinEnter.EnterPIN')}</Text>
         <PinInput
           onPinChanged={setPin}
           testID={testIdWithKey('EnterPIN')}
