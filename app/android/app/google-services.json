@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "1056666176938",
+    "firebase_url": "https://fir-aca-py-default-rtdb.firebaseio.com",
+    "project_id": "fir-aca-py",
+    "storage_bucket": "fir-aca-py.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056666176938:android:0a139411e74b783e1f6fd3",
+        "android_client_info": {
+          "package_name": "com.ariesbifold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056666176938-ims9chutn2r5j07p3fps83o9ajemd0cv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4167gVAB9-xYkK-DTFtG4erVI83JPo2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056666176938-ims9chutn2r5j07p3fps83o9ajemd0cv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1056666176938-6n8hodstbd5o3jqh3fucu06s7nooacm5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tech.indicio.acapynotifications"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056666176938:android:35d3aedcd07a5bc21f6fd3",
+        "android_client_info": {
+          "package_name": "tech.indicio.pushnotifications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056666176938-ims9chutn2r5j07p3fps83o9ajemd0cv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4167gVAB9-xYkK-DTFtG4erVI83JPo2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056666176938-ims9chutn2r5j07p3fps83o9ajemd0cv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1056666176938-6n8hodstbd5o3jqh3fucu06s7nooacm5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tech.indicio.acapynotifications"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
