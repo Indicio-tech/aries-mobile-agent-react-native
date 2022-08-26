@@ -1,17 +1,18 @@
 import { CredentialExchangeRecord as CredentialRecord } from '@aries-framework/core'
+import { useConnectionById } from '@aries-framework/react-hooks'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, View, ViewStyle } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { dateFormatOptions } from '../../constants'
 import { useTheme } from '../../contexts/theme'
 import { GenericFn } from '../../types/fn'
 import { parsedSchema } from '../../utils/helpers'
 import { testIdWithKey } from '../../utils/testable'
 
 import AvatarView from './AvatarView'
+import CredentialTag from './CredentialTag'
 
 interface CredentialCardProps {
   credential: CredentialRecord
@@ -28,25 +29,28 @@ const CredentialCard: React.FC<CredentialCardProps> = ({
 }) => {
   const { t } = useTranslation()
   const { ColorPallet, ListItems } = useTheme()
+  const connection = useConnectionById(credential.connectionId)
   const styles = StyleSheet.create({
     container: {
       ...ListItems.credentialBackground,
-      minHeight: 125,
-      justifyContent: 'center',
+      width: '90%',
+      aspectRatio: 1.586,
+      justifyContent: 'space-between',
       borderRadius: 15,
-      padding: 10,
+      padding: 15,
     },
-    row: {
+    topRow: {
       flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'space-between',
     },
-    details: { flexShrink: 1 },
-    revoked: {
-      ...ListItems.revoked,
+    bottomRow: {
       flexDirection: 'row',
-      alignItems: 'center',
-      marginRight: 5,
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',
+    },
+    wrapper: {
+      width: '70%',
     },
   })
   return (
@@ -56,44 +60,37 @@ const CredentialCard: React.FC<CredentialCardProps> = ({
       style={[styles.container, style]}
       testID={testIdWithKey('ShowCredentialDetails')}
     >
-      <View style={styles.row} testID={testIdWithKey('CredentialCard')}>
+      <></>
+      <View style={styles.topRow} testID={testIdWithKey('CredentialCard')}>
         <AvatarView
           name={parsedSchema(credential).name}
           style={
             revoked
-              ? { borderColor: ListItems.revoked.borderColor, backgroundColor: ColorPallet.brand.primaryBackground }
-              : {}
+              ? {
+                  backgroundColor: ColorPallet.brand.primaryBackground,
+                }
+              : { backgroundColor: ColorPallet.brand.primaryBackground }
           }
         />
-        <View style={styles.details}>
-          <Text style={ListItems.credentialTitle} testID={testIdWithKey('CredentialName')}>
+        <Text style={ListItems.credentialIssuer} testID={testIdWithKey('CredentialIssued')}>
+          {credential.createdAt.toLocaleDateString('en-CA')}
+        </Text>
+      </View>
+      <View style={styles.bottomRow} testID={testIdWithKey('CredentialCard')}>
+        <View style={styles.wrapper} testID={testIdWithKey('CredentialCard')}>
+          <Text style={ListItems.credentialIssuer}>{connection.theirLabel}</Text>
+          <Text numberOfLines={1} style={ListItems.credentialTitle} testID={testIdWithKey('CredentialName')}>
             {parsedSchema(credential).name}
           </Text>
-          <View style={styles.row}>
-            <Text style={ListItems.credentialDetails} testID={testIdWithKey('CredentialVersion')}>
-              {t('CredentialDetails.Version')}: {parsedSchema(credential).version}
-            </Text>
-            {revoked ? (
-              <View style={styles.revoked}>
-                <Icon
-                  style={{ marginRight: 5 }}
-                  name="cancel"
-                  color={ColorPallet.semantic.error}
-                  size={ListItems.credentialTitle.fontSize}
-                ></Icon>
-                <Text
-                  style={[ListItems.credentialDetails, { color: ColorPallet.semantic.error, fontWeight: 'bold' }]}
-                  testID={testIdWithKey('CredentialRevoked')}
-                >
-                  {t('CredentialDetails.Revoked')}
-                </Text>
-              </View>
-            ) : (
-              <Text style={ListItems.credentialDetails} testID={testIdWithKey('CredentialIssued')}>
-                {t('CredentialDetails.Issued')}: {credential.createdAt.toLocaleDateString('en-CA', dateFormatOptions)}
-              </Text>
-            )}
-          </View>
+        </View>
+        <View>
+          {!revoked && (
+            <CredentialTag
+              label={'Revoked'}
+              textStyle={ColorPallet.grayscale.white}
+              containerStyle={ColorPallet.grayscale.mediumGrey}
+            />
+          )}
         </View>
       </View>
     </TouchableOpacity>

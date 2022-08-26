@@ -15,8 +15,6 @@ const AvatarView: React.FC<AvatarViewProps> = ({ name, style }) => {
   const styles = StyleSheet.create({
     avatar: {
       ...ListItems.avatarCircle,
-      margin: 12,
-      borderWidth: 3,
       justifyContent: 'center',
       alignItems: 'center',
     },
