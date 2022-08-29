@@ -23,6 +23,7 @@ public class MainActivity extends ReactActivity {
     super.onCreate(savedInstanceState);
 
     try {
+      Os.setenv("EXTERNAL_STORAGE", getExternalFilesDir(null).getAbsolutePath(), true);
       System.loadLibrary("indy");
     } catch (ErrnoException e) {
       e.printStackTrace();

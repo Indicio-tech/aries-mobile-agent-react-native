@@ -36,7 +36,7 @@ const navigationTheme = {
 const Base = () => {
   const navigationRef = useNavigationContainerRef()
 
-  useFlipper(navigationRef)
+  //useFlipper(navigationRef)
 
   return (
     <NavigationContainer ref={navigationRef} theme={navigationTheme}>
