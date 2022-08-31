@@ -60,7 +60,6 @@ const CredentialCard: React.FC<CredentialCardProps> = ({
       style={[styles.container, style]}
       testID={testIdWithKey('ShowCredentialDetails')}
     >
-      <></>
       <View style={styles.topRow} testID={testIdWithKey('CredentialCard')}>
         <AvatarView
           name={parsedSchema(credential).name}
@@ -72,13 +71,13 @@ const CredentialCard: React.FC<CredentialCardProps> = ({
               : { backgroundColor: ColorPallet.brand.primaryBackground }
           }
         />
-        <Text style={ListItems.credentialIssuer} testID={testIdWithKey('CredentialIssued')}>
+        <Text style={ListItems.credentialSubtitle} testID={testIdWithKey('CredentialIssued')}>
           {credential.createdAt.toLocaleDateString('en-CA')}
         </Text>
       </View>
       <View style={styles.bottomRow} testID={testIdWithKey('CredentialCard')}>
         <View style={styles.wrapper} testID={testIdWithKey('CredentialCard')}>
-          <Text style={ListItems.credentialIssuer}>{connection.theirLabel}</Text>
+          <Text style={ListItems.credentialSubtitle}>{connection.theirLabel}</Text>
           <Text numberOfLines={1} style={ListItems.credentialTitle} testID={testIdWithKey('CredentialName')}>
             {parsedSchema(credential).name}
           </Text>

@@ -343,7 +343,7 @@ export const ListItems = StyleSheet.create({
   credentialTitle: {
     ...TextTheme.headingFour,
   },
-  credentialDetails: {
+  credentialSubtitle: {
     ...TextTheme.caption,
   },
   credentialOfferBackground: {
