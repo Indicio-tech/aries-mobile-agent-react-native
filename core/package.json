@@ -62,7 +62,7 @@
     "react-native-keychain": "^6.2.0",
     "react-native-localize": "^2.1.5",
     "react-native-qrcode-svg": "^6.0.6",
-    "react-native-reanimated": "^2.2.4",
+    "react-native-reanimated": "^2.10.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-scalable-image": "^1.1.0",
     "react-native-screens": "^3.3.0",
@@ -71,8 +71,10 @@
     "react-native-toast-message": "^2.0.1",
     "react-native-uuid": "^2.0.1",
     "react-native-vector-icons": "^9.2.0",
+    "react-native-vision-camera": "^2.14.1",
     "react-native-webview": "^11.23.0",
-    "uuid": "^8.1.0"
+    "uuid": "8.3.2",
+    "vision-camera-code-scanner": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -135,5 +137,9 @@
       "module",
       "typescript"
     ]
+  },
+  "dependencies": {
+    "react-native-vision-camera": "^2.14.1",
+    "vision-camera-code-scanner": "^0.2.0"
   }
 }
