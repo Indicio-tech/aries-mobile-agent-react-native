@@ -2,6 +2,7 @@
  * @format
  */
 import 'react-native-gesture-handler'
+import '@formatjs/intl-pluralrules/polyfill'
 
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native'
 import { NavigationTheme } from 'aries-bifold'
