@@ -36,7 +36,6 @@
     "react-native": "0.69.5",
     "react-native-animated-pagination-dots": "0.1.72",
     "react-native-argon2": "2.0.1",
-    "react-native-camera": "^4.2.1",
     "react-native-collapsible": "^1.6.0",
     "react-native-config": "^1.4.6",
     "react-native-confirmation-code-field": "^7.3.0",
