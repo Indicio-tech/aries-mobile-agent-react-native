@@ -74,13 +74,21 @@ const QRScanner: React.FC<Props> = ({ handleCodeScan, error, setQrCodeScanError 
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      width: '70%',
       padding: 15,
       borderRadius: 10,
-      backgroundColor: ColorPallet.brand.primaryBackground,
+      backgroundColor: ColorPallet.grayscale.black,
     },
     errorContainer: {
       flex: 0.2,
       justifyContent: 'flex-start',
+    },
+    changeSettings: {
+      backgroundColor: ColorPallet.grayscale.white,
+      borderRadius: 15,
+      paddingHorizontal: 10,
+      paddingVertical: 3,
+      marginTop: 10,
     },
     scannerClose: {
       flex: 0.2,
@@ -121,51 +129,74 @@ const QRScanner: React.FC<Props> = ({ handleCodeScan, error, setQrCodeScanError 
   }, [error])
 
   return (
-    
-      <>
-        <View style={styles.container}>
-        {device != null &&
-    hasPermission && (<Camera
+    <>
+      <View style={styles.container}>
+        {device != null && hasPermission && (
+          <Camera
             style={StyleSheet.absoluteFill}
             device={device}
             isActive={true}
             torch={torchActive ? 'on' : 'off'}
             frameProcessor={frameProcessor}
             frameProcessorFps={5}
-          />)}
-          <CameraViewContainer portrait={portraitMode}>
-            <View style={styles.scannerClose}>
-              <QRScannerClose
-                onPress={() => {
-                  navigation.goBack()
-                }}
-              ></QRScannerClose>
-            </View>
-            <View style={styles.viewFinderContainer}>
-              <View style={styles.viewFinder} />
-            </View>
-            <View style={styles.errorContainer}>
-              {error ? (
-                <TouchableOpacity style={styles.errorMessage} onPress={() => handleScanError()}>
-                  {/* <Icon style={styles.icon} name="cancel" size={30}></Icon> */}
-                  <Text style={[TextTheme.caption, { fontSize: 16, color: ColorPallet.grayscale.white }]}>
-                    {error.message}
-                  </Text>
-                  <Text style={[TextTheme.caption, { fontSize: 12, color: ColorPallet.grayscale.white }]}>
-                    Tap to dismiss
+          />
+        )}
+        <CameraViewContainer portrait={portraitMode}>
+          <View style={styles.scannerClose}>
+            <QRScannerClose
+              onPress={() => {
+                navigation.goBack()
+              }}
+            ></QRScannerClose>
+          </View>
+          <View style={styles.viewFinderContainer}>
+            <View style={styles.viewFinder} />
+          </View>
+          <View style={styles.errorContainer}>
+            {error ? (
+              <TouchableOpacity style={styles.errorMessage} onPress={() => handleScanError()}>
+                <Text style={[TextTheme.caption, { fontSize: 16, color: ColorPallet.grayscale.white }]}>
+                  {error.message}
+                </Text>
+                <Text style={[TextTheme.caption, { fontSize: 12, color: ColorPallet.grayscale.white }]}>
+                  {t('Scan.Dismiss')}
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <></>
+            )}
+            {!hasPermission ? (
+              <View style={styles.errorMessage}>
+                <Text style={[TextTheme.caption, { fontSize: 16, color: ColorPallet.grayscale.white }]}>
+                  {t(['Scan.CameraUnavailable'])}
+                </Text>
+                <Text
+                  style={[TextTheme.caption, { fontSize: 14, color: ColorPallet.grayscale.white, textAlign: 'center' }]}
+                >
+                  {t('Scan.NoPermissions')}
+                </Text>
+                <TouchableOpacity style={styles.changeSettings} onPress={() => Linking.openSettings()}>
+                  <Text
+                    style={[
+                      TextTheme.caption,
+                      { fontSize: 14, fontWeight: 'bold', color: ColorPallet.grayscale.black },
+                    ]}
+                  >
+                    {t('Scan.ChangeSettings')}
                   </Text>
                 </TouchableOpacity>
-              ) : (
-                <></>
-              )}
-            </View>
-            <View style={styles.torchContainer}>
-              <QRScannerTorch active={torchActive} onPress={() => setTorchActive(!torchActive)} />
-            </View>
-          </CameraViewContainer>
-        </View>
-      </>
-    )
+              </View>
+            ) : (
+              <></>
+            )}
+          </View>
+          <View style={styles.torchContainer}>
+            <QRScannerTorch active={torchActive} onPress={() => setTorchActive(!torchActive)} />
+          </View>
+        </CameraViewContainer>
+      </View>
+    </>
+  )
 }
 
 export default QRScanner
