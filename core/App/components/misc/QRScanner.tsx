@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useWindowDimensions, Vibration, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { Linking, useWindowDimensions, Vibration, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { Camera, useCameraDevices } from 'react-native-vision-camera'
 import { Barcode, useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
 
@@ -101,6 +101,7 @@ const QRScanner: React.FC<Props> = ({ handleCodeScan, error, setQrCodeScanError 
     (async () => {
       const status = await Camera.requestCameraPermission()
       setHasPermission(status === 'authorized')
+      //Linking.openSettings();
     })()
   }, [])
 
@@ -120,18 +121,18 @@ const QRScanner: React.FC<Props> = ({ handleCodeScan, error, setQrCodeScanError 
   }, [error])
 
   return (
-    device != null &&
-    hasPermission && (
+    
       <>
         <View style={styles.container}>
-          <Camera
+        {device != null &&
+    hasPermission && (<Camera
             style={StyleSheet.absoluteFill}
             device={device}
             isActive={true}
             torch={torchActive ? 'on' : 'off'}
             frameProcessor={frameProcessor}
             frameProcessorFps={5}
-          />
+          />)}
           <CameraViewContainer portrait={portraitMode}>
             <View style={styles.scannerClose}>
               <QRScannerClose
@@ -165,7 +166,6 @@ const QRScanner: React.FC<Props> = ({ handleCodeScan, error, setQrCodeScanError 
         </View>
       </>
     )
-  )
 }
 
 export default QRScanner
