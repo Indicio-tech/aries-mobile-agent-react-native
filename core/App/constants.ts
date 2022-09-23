@@ -11,6 +11,7 @@ export enum LocalStorageKeys {
   RevokedCredentials = 'RevokedCredentials',
   RevokedCredentialsMessageDismissed = 'RevokedCredentialsMessageDismissed',
   Preferences = 'PreferencesState',
+  User = 'UserState',
 }
 
 //Keys for items saved in keychain/async storage

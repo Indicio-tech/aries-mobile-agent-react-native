@@ -8,6 +8,7 @@ const initialState: State = {
   onboarding: {
     didAgreeToTerms: false,
     didCompleteTutorial: false,
+    didCreateDisplayName: false,
     didCreatePIN: false,
     didConsiderBiometry: false,
   },
@@ -20,6 +21,10 @@ const initialState: State = {
   },
   preferences: {
     useBiometry: false,
+  },
+  user: {
+    firstName: '',
+    lastName: '',
   },
   error: null,
   loading: false,

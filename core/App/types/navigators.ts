@@ -7,6 +7,7 @@ export enum Screens {
   Splash = 'Splash',
   Onboarding = 'Onboarding',
   Terms = 'Terms',
+  NameCreate = 'Create a Name',
   CreatePin = 'Create a PIN',
   EnterPin = 'Enter PIN',
   Home = 'Home',

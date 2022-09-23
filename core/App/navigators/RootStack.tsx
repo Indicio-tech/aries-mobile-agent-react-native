@@ -28,6 +28,7 @@ import { createCarouselStyle } from '../screens/OnboardingPages'
 import PinCreate from '../screens/PinCreate'
 import PinEnter from '../screens/PinEnter'
 import UseBiometry from '../screens/UseBiometry'
+import NameCreate from '../screens/NameCreate'
 import { StateFn } from '../types/fn'
 import { AuthenticateStackParams, Screens, Stacks } from '../types/navigators'
 import { WalletSecret } from '../types/security'
@@ -202,6 +203,10 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
           })}
           component={terms}
         />
+        <Stack.Screen
+         name={Screens.NameCreate}
+         component={NameCreate}
+         />
         <Stack.Screen name={Screens.CreatePin}>
           {(props) => <PinCreate {...props} setAuthenticated={setAuthenticated} />}
         </Stack.Screen>

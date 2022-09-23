@@ -4,6 +4,7 @@ import { LocalStorageKeys } from '../../constants'
 import {
   Privacy as PrivacyState,
   Preferences as PreferencesState,
+  User as UserState,
   Onboarding as OnboardingState,
   Credential as CredentialState,
   State,
@@ -12,6 +13,7 @@ import {
 enum OnboardingDispatchAction {
   ONBOARDING_UPDATED = 'onboarding/onboardingStateLoaded',
   DID_COMPLETE_TUTORIAL = 'onboarding/didCompleteTutorial',
+  DID_CREATE_DISPLAY_NAME = 'onboarding/didCreateDisplayName',
   DID_AGREE_TO_TERMS = 'onboarding/didAgreeToTerms',
   DID_CREATE_PIN = 'onboarding/didCreatePin',
 }
@@ -43,6 +45,12 @@ enum PreferencesDispatchAction {
   PREFERENCES_UPDATED = 'preferences/preferencesStateLoaded',
 }
 
+enum UserDispatchAction {
+  FIRST_NAME_UPDATED = 'user/firstNameUpdated',
+  LAST_NAME_UPDATED = 'user/lastNameUpdated',
+  USER_UPDATED = 'user/userStateLoaded',
+}
+
 export type DispatchAction =
   | OnboardingDispatchAction
   | ErrorDispatchAction
@@ -50,6 +58,7 @@ export type DispatchAction =
   | LoadingDispatchAction
   | PrivacyDispatchAction
   | PreferencesDispatchAction
+  | UserDispatchAction
 
 export const DispatchAction = {
   ...OnboardingDispatchAction,
@@ -58,6 +67,7 @@ export const DispatchAction = {
   ...LoadingDispatchAction,
   ...PrivacyDispatchAction,
   ...PreferencesDispatchAction,
+  ...UserDispatchAction,
 }
 
 export interface ReducerAction {
@@ -105,6 +115,34 @@ const reducer = (state: State, action: ReducerAction): State => {
 
       return newState
     }
+    case UserDispatchAction.FIRST_NAME_UPDATED: {
+      const user: UserState = {
+        ...state.user,
+        firstName: (action?.payload ?? ['']).pop()
+      }
+      const newState = {
+        ...state,
+        user,
+      }
+
+      AsyncStorage.setItem(LocalStorageKeys.User, JSON.stringify(user))
+
+      return newState
+    }
+    case UserDispatchAction.LAST_NAME_UPDATED: {
+      const user: UserState = {
+        ...state.user,
+        lastName: (action?.payload ?? ['']).pop()
+      }
+      const newState = {
+        ...state,
+        user,
+      }
+
+      AsyncStorage.setItem(LocalStorageKeys.User, JSON.stringify(user))
+
+      return newState
+    }
     case PrivacyDispatchAction.PRIVACY_UPDATED: {
       const privacy: PrivacyState = (action?.payload || []).pop()
       return {
@@ -135,6 +173,18 @@ const reducer = (state: State, action: ReducerAction): State => {
       const onboarding: OnboardingState = {
         ...state.onboarding,
         didAgreeToTerms: true,
+      }
+      const newState = {
+        ...state,
+        onboarding,
+      }
+      AsyncStorage.setItem(LocalStorageKeys.Onboarding, JSON.stringify(newState.onboarding))
+      return newState
+    }
+    case OnboardingDispatchAction.DID_CREATE_DISPLAY_NAME: {
+      const onboarding: OnboardingState = {
+        ...state.onboarding,
+        didCreateDisplayName: true,
       }
       const newState = {
         ...state,
