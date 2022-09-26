@@ -1,3 +1,4 @@
+import BCovrinProd from './bcovrin-prod/pool-config'
 import BCovrinTest from './bcovrin-test/pool-config'
 import CandyDev from './candy-dev/pool-config'
 import IndicioDemoNet from './indicio-demo-net/pool-config'
@@ -10,6 +11,7 @@ import SovrinStagingNet from './sovrin-staging-net/pool-config'
 export default [
   SovrinMainNet,
   IndicioMainNet,
+  BCovrinProd,
   SovrinStagingNet,
   IndicioDemoNet,
   IndicioTestNet,
