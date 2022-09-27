@@ -15,7 +15,7 @@ import { SettingStackParams, Screens } from '../types/navigators'
 
 const NameUpdate: React.FC = () => {
   const { t } = useTranslation()
-  const { ColorPallet } = useTheme()
+  const { ColorPallet, TextTheme } = useTheme()
   const [state, dispatch] = useContext(StoreContext)
   const [firstName, onChangeFirstName] = useState('')
   const [lastName, onChangeLastName] = useState('')
@@ -24,16 +24,17 @@ const NameUpdate: React.FC = () => {
 
   const styles = StyleSheet.create({
     title: {
-      color: ColorPallet.grayscale.white,
+      ...TextTheme.normal,
       fontSize: 16,
     },
     warningText: {
+      ...TextTheme.normal,
+      fontSize: 14,
       fontWeight: 'bold',
-      color: ColorPallet.grayscale.white,
       paddingRight: 10,
     },
     text: {
-      color: ColorPallet.grayscale.white,
+      ...TextTheme.normal,
       marginBottom: 10,
       fontSize: 12,
     },

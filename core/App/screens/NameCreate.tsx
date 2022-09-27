@@ -16,7 +16,7 @@ import { AuthenticateStackParams, Screens } from '../types/navigators'
 const NameCreate: React.FC = () => {
   const { t } = useTranslation()
   const [state, dispatch] = useContext(StoreContext)
-  const { ColorPallet } = useTheme()
+  const { ColorPallet, TextTheme } = useTheme()
   const [firstName, onChangeFirstName] = useState('')
   const [lastName, onChangeLastName] = useState('')
   const [buttonsActive, setButtonsActive] = useState(false)
@@ -24,16 +24,17 @@ const NameCreate: React.FC = () => {
 
   const styles = StyleSheet.create({
     title: {
-      color: ColorPallet.grayscale.white,
+      ...TextTheme.normal,
       fontSize: 16,
     },
     warningText: {
+      ...TextTheme.normal,
+      fontSize: 14,
       fontWeight: 'bold',
-      color: ColorPallet.grayscale.white,
       paddingRight: 10,
     },
     text: {
-      color: ColorPallet.grayscale.white,
+      ...TextTheme.normal,
       marginBottom: 10,
       fontSize: 12,
     },
