@@ -43,9 +43,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.7.2)
   - hermes-engine (0.70.1)
-  - Indy (1.15.0)
-  - indy-sdk-react-native (0.3.0-pre.updatedinstall.0):
-    - Indy
+  - indy-sdk-react-native (0.2.2):
     - React
   - libevent (2.1.12)
   - MLImage (1.0.0-beta3)
@@ -425,7 +423,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.7.2):
+  - RNScreens (3.17.0):
     - React-Core
     - React-RCTImage
   - RNSVG (12.1.1):
@@ -518,8 +516,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
-  https://github.com/JamesKEbert/indy-sdk-react-native:
-    - Indy
 
 EXTERNAL SOURCES:
   boost:
@@ -648,8 +644,7 @@ SPEC CHECKSUMS:
   GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   hermes-engine: 9cd393f741bfa14d1d0cd90cc373e3619c0bc7ea
-  Indy: cbbca28b102fb3441476c2eda4c11d0e72dd36ee
-  indy-sdk-react-native: 0e0d548009a92dfb520bb2a56935d01a5bd16973
+  indy-sdk-react-native: 52c3fdd11b673d11cdae5c28fa79a184084c6688
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   MLImage: 489dfec109f21da8621b28d476401aaf7a0d4ff4
   MLKitBarcodeScanning: d92fe1911001ec36870162c5a0eb206f612b7169
@@ -700,13 +695,13 @@ SPEC CHECKSUMS:
   RNKeychain: b8e0711b959a19c5b057d1e970d3c83d159b6da5
   RNLocalize: 74b82db20cc3895ccc25af992c644879bcec2815
   RNReanimated: 60e291d42c77752a0f6d6f358387bdf225a87c6e
-  RNScreens: 0591543e343c7444ea1756b6265d81a4295922c9
+  RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   vision-camera-code-scanner: dda884a7f3ec8243a2a6d6489b91860648371bca
   VisionCamera: 1b343c2325943efa72808450cf47e14907b9a7fa
   Yoga: 6c8252e38d65aa387daee699eacf027e055e0b31
 
-PODFILE CHECKSUM: f7b75b39130209d6f71c81ed55609d3c8fdfddb9
+PODFILE CHECKSUM: fc406396195eb9c6aa55fc2b6e391225e80c693d
 
 COCOAPODS: 1.11.3
