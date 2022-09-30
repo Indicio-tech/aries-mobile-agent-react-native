@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 
 interface FontAttributes {
   fontFamily?: string
@@ -16,6 +16,11 @@ interface InputAttributes {
   color?: string
   borderWidth?: number
   borderColor?: string
+}
+
+interface ImageAttributes {
+  height: number
+  width: number
 }
 
 interface Inputs {
@@ -41,6 +46,13 @@ interface TextTheme {
   labelText: FontAttributes
   caption: FontAttributes
   title: FontAttributes
+}
+
+interface ImageTheme {
+  small: ImageAttributes
+  medium: ImageAttributes
+  large?: ImageAttributes
+  wide: ImageAttributes
 }
 
 interface BrandColors {
@@ -215,6 +227,21 @@ export const TextTheme: TextTheme = {
     fontSize: 20,
     fontWeight: 'bold',
     color: ColorPallet.notification.infoText,
+  },
+}
+
+export const ImageTheme: ImageTheme = {
+  small: {
+    height: 100,
+    width: 100,
+  },
+  medium: {
+    height: 200,
+    width: 200,
+  },
+  wide: {
+    height: 80,
+    width: 220,
   },
 }
 

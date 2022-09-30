@@ -27,7 +27,7 @@ export const createCarouselStyle = (OnboardingTheme: any): OnboardingStyleSheet 
       flexShrink: 2,
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 35,
+      backgroundColor: 'blue',
     },
     pagerDot: {
       ...OnboardingTheme.pagerDot,
@@ -80,9 +80,8 @@ export const createStyles = (OnboardingTheme: any) => {
   })
 }
 
-const createImageDisplayOptions = (OnboardingTheme: any) => {
+const createImageDisplayOptions = () => {
   return {
-    ...OnboardingTheme.imageDisplayOptions,
     height: 180,
     width: 180,
   }
