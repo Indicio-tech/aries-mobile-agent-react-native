@@ -687,6 +687,7 @@ export const Assets = {
 export interface Theme {
   ColorPallet: ColorPallet
   TextTheme: TextTheme
+  ImageTheme: ImageTheme
   Inputs: Inputs
   Buttons: any
   ListItems: any
@@ -708,6 +709,7 @@ export interface Theme {
 export const theme: Theme = {
   ColorPallet,
   TextTheme,
+  ImageTheme,
   Inputs,
   Buttons,
   ListItems,
