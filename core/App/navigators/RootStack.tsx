@@ -96,13 +96,13 @@ const RootStack: React.FC<RootStackProps> = (props: RootStackProps) => {
         {
           label: name,
           mediatorConnectionsInvite: Config.MEDIATOR_URL,
-          mediatorPickupStrategy: MediatorPickupStrategy.Implicit,
+          mediatorPickupStrategy: MediatorPickupStrategy.PickUpV2,
           walletConfig: { id: credentials.id, key: credentials.key },
           autoAcceptConnections: true,
           autoAcceptCredentials: AutoAcceptCredential.ContentApproved,
           logger: new ConsoleLogger(LogLevel.trace),
           indyLedgers,
-          connectToIndyLedgersOnStartup : Platform.OS === 'android',
+          connectToIndyLedgersOnStartup: Platform.OS === 'android',
           autoUpdateStorageOnStartup: true,
         },
         agentDependencies
