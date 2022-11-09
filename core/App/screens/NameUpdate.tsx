@@ -17,8 +17,8 @@ const NameUpdate: React.FC = () => {
   const { t } = useTranslation()
   const { ColorPallet } = useTheme()
   const [state, dispatch] = useContext(StoreContext)
-  const [firstName, onChangeFirstName] = useState('')
-  const [lastName, onChangeLastName] = useState('')
+  const [firstName, onChangeFirstName] = useState(state.user.firstName)
+  const [lastName, onChangeLastName] = useState(state.user.lastName)
   const [buttonsActive, setButtonsActive] = useState(false)
   const navigation = useNavigation<StackNavigationProp<[SettingStackParams]>>()
 
@@ -68,9 +68,6 @@ const NameUpdate: React.FC = () => {
       dispatch({
         type: DispatchAction.LAST_NAME_UPDATED,
         payload: [lastName],
-      })
-      dispatch({
-        type: DispatchAction.DID_CREATE_DISPLAY_NAME,
       })
       navigation.navigate(Screens.Settings)
     } catch {
