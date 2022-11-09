@@ -1,10 +1,11 @@
-import { ConnectionInvitationMessage, ConnectionState } from '@aries-framework/core'
+import { ConnectionInvitationMessage, ConnectionRecord, ConnectionStateChangedEvent, ConnectionEventTypes, DidExchangeState, OutOfBandRecord } from '@aries-framework/core'
 import { useAgent, useConnectionById } from '@aries-framework/react-hooks'
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, useWindowDimensions, View } from 'react-native'
+import { EventSubscriptionVendor, StyleSheet, useWindowDimensions, View } from 'react-native'
 
 import { uiConfig } from '../../configs/uiConfig'
+import { STORAGE_FIRSTLOGIN } from '../../lib/typescript/lib/module/constants'
 import Button, { ButtonType } from '../components/buttons/Button'
 import QRContainer from '../components/misc/QRContainer'
 import { useStore } from '../contexts/store'
@@ -17,12 +18,15 @@ const DisplayCode = ({ navigation }: any) => {
   const { t } = useTranslation()
   const { width } = useWindowDimensions()
 
-  const [connectionId, setConnectionId] = useState('')
+  const [oobRecord, setOobRecord] = useState<OutOfBandRecord | undefined>()
+  const [connectionId, setConnectionId] = useState<string | undefined>()
   const [invitation, setInvitation] = useState<ConnectionInvitationMessage>()
   const [mediationEndpoint, setMediationEndpoint] = useState<string | undefined>()
   const [value, setValue] = useState('placeholder')
 
-  const connection = useConnectionById(connectionId)
+  // const connection = useConnectionById(connectionId)
+  let connection : ConnectionRecord | undefined
+  if (connectionId) {connection = useConnectionById(connectionId)}
 
   const styles = StyleSheet.create({
     outerContainer: {
@@ -34,15 +38,29 @@ const DisplayCode = ({ navigation }: any) => {
     innerContainer: {},
   })
 
+  const handleEvent = (event: ConnectionStateChangedEvent) => {
+    if (event.payload.connectionRecord.outOfBandId === oobRecord?.id) {
+      setConnectionId(event.payload.connectionRecord.id)
+    }
+  }
+
+    useEffect(() => {
+    agent?.events.on(ConnectionEventTypes.ConnectionStateChanged, (event: ConnectionStateChangedEvent) => handleEvent(event))
+
+    return () => {
+      agent?.events.off(ConnectionEventTypes.ConnectionStateChanged, (event: ConnectionStateChangedEvent) => handleEvent(event))
+    }
+  }, [agent, oobRecord])
+
   const generateInvitation = async () => {
-    const { invitation } = await agent?.oob.createLegacyInvitation({
+    const { outOfBandRecord, invitation } = await agent!.oob.createLegacyInvitation({
       autoAcceptConnection: true,
       label: state.user.firstName + ' ' + state.user.lastName,
     })
     const mediationRecord = await agent?.mediationRecipient.findDefaultMediator()
     setInvitation(invitation)
-    if (invitation?.connectionRecord) {
-      setConnectionId(invitation.connectionRecord.id)
+    if (invitation) {
+      setOobRecord(outOfBandRecord)
     }
     if (mediationRecord?.endpoint) {
       setMediationEndpoint(mediationRecord.endpoint)
@@ -64,19 +82,21 @@ const DisplayCode = ({ navigation }: any) => {
   }, [])
 
   useEffect(() => {
-    if (connection?.state === ConnectionState.Complete) {
+    if (connection?.state === DidExchangeState.Completed) {
       if (uiConfig.navigateOnConnection) {
         navigation.goBack()
-        navigation.navigate(Stacks.ContactStack, {
-          screen: Screens.Chat,
-          params: { connectionId: connection.id },
-        })
+        //  NOTE: Below is the code to navigate to chat screen, leaving in for later use
+        // navigation.navigate(Stacks.ContactStack, {
+        //   screen: Screens.Chat,
+        //   params: { connectionId: connection.id },
+        // })
+        navigation.navigate(Screens.Home)
       } else {
         navigation.goBack()
         navigation.navigate(Stacks.ConnectionStack, { screen: Screens.Connection, params: { connectionId } })
       }
     }
-  }, [connection])
+  }, [connection, connectionId])
 
   return (
     <View style={styles.outerContainer}>
