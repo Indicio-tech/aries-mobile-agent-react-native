@@ -6,7 +6,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useTheme } from '../../contexts/theme'
 import { Attribute, Field } from '../../types/record'
 import { testIdWithKey } from '../../utils/testable'
-import { dateAttributes, dateFormatOptions } from '../../constants'
+import { dateAttributes, dateFormatOptions, dateLocale } from '../../constants'
 
 interface RecordFieldProps {
   field: Field
@@ -75,7 +75,7 @@ const RecordField: React.FC<RecordFieldProps> = ({
               <Text style={styles.text} testID={testIdWithKey('AttributeValue')}>
                 {shown ? 
                 dateAttributes.includes(field.name!) ?
-                new Date((field).value * 1000).toLocaleDateString('en-CA', dateFormatOptions) :
+                new Date((field).value * 1000).toLocaleDateString(dateLocale, dateFormatOptions) :
                 (field as Attribute).value 
                 : Array(10).fill('\u2022').join('')}
               </Text>
