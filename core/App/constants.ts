@@ -29,4 +29,10 @@ export const dateFormatOptions: { year: 'numeric'; month: 'short'; day: 'numeric
   day: 'numeric',
 }
 
+export const dateLocale: string = 'en-US'
+
 export const minPINLength = 6
+
+export const dateAttributes: String[] = [
+  'verified_at'
+]
