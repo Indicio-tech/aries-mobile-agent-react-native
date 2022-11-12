@@ -31,7 +31,7 @@
     "@react-navigation/stack": "^6.0.11",
     "axios": "^0.21.0",
     "i18next": "^21.4.0",
-    "indy-sdk-react-native": "file:../indy-sdk-react-native-v0.3.0-pre.updatedinstall.0.tgz",
+    "indy-sdk-react-native": "0.3.0",
     "lodash.flatten": "^4.4.0",
     "lodash.startcase": "^4.4.0",
     "query-string": "^7.0.1",
