@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { FlatList, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 
 import CredentialCard from '../components/misc/CredentialCard'
 import EmptyList from '../components/misc/EmptyList'
@@ -17,7 +17,7 @@ const ListCredentials: React.FC = () => {
     ...useCredentialByState(CredentialState.CredentialReceived),
     ...useCredentialByState(CredentialState.Done),
   ]
-  const { ColorPallet } = useTheme()
+  const { ColorPallet, TextTheme } = useTheme()
   const navigation = useNavigation<StackNavigationProp<CredentialStackParams>>()
 
   return (
@@ -27,12 +27,18 @@ const ListCredentials: React.FC = () => {
           style={{ backgroundColor: ColorPallet.brand.primaryBackground }}
           data={credentials.sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())}
           keyExtractor={(item: CredentialRecord) => item.id}
+          ListFooterComponent={() => (
+              <Text style={[TextTheme.labelSubtitle, { color: ColorPallet.grayscale, textAlign: 'center' }]}>
+                {t('Credentials.ViewCredentials')}
+              </Text>
+            )}
+          ListFooterComponentStyle={{ marginBottom: 25 }}
           renderItem={({ item, index }) => (
             <View
               style={{
                 marginHorizontal: 15,
                 marginTop: 15,
-                marginBottom: index === credentials.length - 1 ? 45 : 0,
+                marginBottom: index === credentials.length - 1 ? 20 : 0,
               }}
             >
               <CredentialCard

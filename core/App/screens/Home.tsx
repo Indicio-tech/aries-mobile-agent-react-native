@@ -46,12 +46,14 @@ export const NoContactsMessage = () => {
       alignItems: 'center',
     },
     icon: {
-      color: ColorPallet.brand.secondaryBackground,
+      //FIX ME
+      color: '#AEAEAE',
     },
     text: {
       ...TextTheme.normal,
       textAlign: 'center',
-      color: ColorPallet.brand.secondaryBackground,
+      //FIX ME
+      color: '#AEAEAE',
       paddingVertical: 15,
     },
   })
@@ -62,7 +64,7 @@ export const NoContactsMessage = () => {
         <View style={noContactStyles.content}>
           <Icon name={'qrcode-scan'} style={noContactStyles.icon} size={65}></Icon>
           <Text style={noContactStyles.text}>
-            {t('Home.Touch')} <Text style={{ fontWeight: 'bold' }}>{t('Home.Scan')}</Text> {t('Home.BelowToCreate')}
+            {t('Home.Touch')} <Text style={{ fontWeight: 'bold' }}>{t('Home.Connect')}</Text> {t('Home.BelowToCreate')}
           </Text>
           <Icon name={'arrow-down-thick'} style={noContactStyles.icon} size={40}></Icon>
         </View>
@@ -109,10 +111,10 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
       minHeight: HomeTheme.link.fontSize,
     },
     user: {
-      width: 40,
-      height: 40,
+      width: 35,
+      height: 35,
       borderWidth: 0,
-      backgroundColor: ColorPallet.brand.secondaryBackground,
+      backgroundColor: ColorPallet.grayscale.lightGrey,
     },
     wrapper: {
       alignItems: 'center',

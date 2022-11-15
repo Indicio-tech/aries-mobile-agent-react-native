@@ -114,7 +114,7 @@ const CredentialDetails: React.FC<CredentialDetailsProps> = ({ navigation, route
         </View>
       )}
       fields={credential.credentialAttributes}
-      hideFieldValues={true}
+      hideFieldValues={false}
     />
   )
 }

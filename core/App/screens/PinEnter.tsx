@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Keyboard, StyleSheet, Text, Image, View, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
+import { Svg, SvgProps } from 'react-native-svg'
+ 
 import Button, { ButtonType } from '../components/buttons/Button'
+import HoldrLogo from '../assets/img/holdr-logo.svg'
+import IndicioPowered from '../assets/img/indicio-logo.svg'
 import PinInput from '../components/inputs/PinInput'
 import AlertModal from '../components/modals/AlertModal'
 import { useAuth } from '../contexts/auth'
@@ -27,6 +30,10 @@ const PinEnter: React.FC = () => {
       flex: 1,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
+    logoContainer: {
+      alignItems: 'center',
+      height: 150,
+    },
   })
 
   const onPinInputCompleted = async (pin: string) => {
@@ -46,16 +53,9 @@ const PinEnter: React.FC = () => {
   return (
     <SafeAreaView style={[style.container]}>
       <View style={{ margin: 20 }}>
-        <Image
-          source={Assets.img.logoLarge.src}
-          style={{
-            height: Assets.img.logoLarge.height,
-            width: Assets.img.logoLarge.width,
-            resizeMode: Assets.img.logoLarge.resizeMode,
-            alignSelf: 'center',
-            marginBottom: 20,
-          }}
-        />
+        <View style={[style.logoContainer]}>
+          <HoldrLogo width={250} height={150} />
+        </View>
         <Text style={[TextTheme.normal, { alignSelf: 'center', marginBottom: 16 }]}>{t('PinEnter.EnterPIN')}</Text>
         <PinInput
           onPinChanged={setPin}
@@ -78,6 +78,9 @@ const PinEnter: React.FC = () => {
       {modalVisible && (
         <AlertModal title={t('PinEnter.IncorrectPIN')} message="" submit={() => setModalVisible(false)} />
       )}
+      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+        <IndicioPowered width={100} height={100} />
+      </View>
     </SafeAreaView>
   )
 }

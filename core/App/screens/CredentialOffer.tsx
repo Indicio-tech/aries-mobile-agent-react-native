@@ -172,7 +172,7 @@ const CredentialOffer: React.FC<CredentialOfferProps> = ({ navigation, route }) 
                 title={t('Global.Decline')}
                 accessibilityLabel={t('Global.Decline')}
                 testID={testIdWithKey('DeclineCredentialOffer')}
-                buttonType={ButtonType.Secondary}
+                buttonType={ButtonType.Tertiary}
                 onPress={handleDeclinePress}
                 disabled={!buttonsVisible}
               />

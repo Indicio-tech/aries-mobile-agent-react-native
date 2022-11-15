@@ -89,14 +89,15 @@ const TabStack: React.FC = () => {
             'account-multiple',
             'account-multiple-outline'
           )}
-        {renderTabScreen(TabStacks.ConnectStack, t('TabStack.Scan'), ConnectStack, 'qrcode-scan', 'qrcode-scan', true)}
         {renderTabScreen(
-          TabStacks.CredentialStack,
-          t('TabStack.Credentials'),
-          CredentialStack,
-          'wallet',
-          'wallet-outline'
+          TabStacks.ConnectStack,
+          t('TabStack.Connect'),
+          ConnectStack,
+          'qrcode-scan',
+          'qrcode-scan',
+          true
         )}
+        {renderTabScreen(TabStacks.CredentialStack, t('TabStack.Wallet'), CredentialStack, 'wallet', 'wallet-outline')}
         {uiConfig.fiveTabDisplay &&
           renderTabScreen(TabStacks.SettingStack, t('TabStack.Settings'), SettingStack, 'cog', 'cog-outline')}
       </Tab.Navigator>

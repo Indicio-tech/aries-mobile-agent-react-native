@@ -57,16 +57,16 @@ const ProofRequestAttributeDetails: React.FC<ProofRequestAttributeDetailsProps> 
   useMemo(() => {
     navigation.setOptions({
       title: t('ProofRequest.Details'),
-      headerRight: undefined,
+      headerTitleAlign: 'center',
       headerLeft: () => (
         <HeaderLeftBack
-          title={t('Global.Back')}
+          title={''}
           onPress={() => {
             navigation.pop()
           }}
         />
       ),
-      headerBackTitle: t('Global.Back'),
+      headerBackTitleVisible: false,
       headerBackAccessibilityLabel: t('Global.Back'),
       headerBackTestID: testIdWithKey('BackButton'),
     })

@@ -72,7 +72,7 @@ const CredentialCard: React.FC<CredentialCardProps> = ({
           </Text>
           <View style={styles.row}>
             <Text style={ListItems.credentialDetails} testID={testIdWithKey('CredentialVersion')}>
-              {t('CredentialDetails.Version')}: {parsedSchema(credential).version}
+              {`${t('CredentialDetails.Version')}: ${parsedSchema(credential).version} `}
             </Text>
             {revoked ? (
               <View style={styles.revoked}>

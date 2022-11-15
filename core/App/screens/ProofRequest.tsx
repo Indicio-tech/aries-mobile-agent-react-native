@@ -249,7 +249,7 @@ const ProofRequest: React.FC<ProofRequestProps> = ({ navigation, route }) => {
                 title={t('Global.Decline')}
                 accessibilityLabel={t('Global.Decline')}
                 testID={testIdWithKey('Decline')}
-                buttonType={!credentials ? ButtonType.Primary : ButtonType.Secondary}
+                buttonType={!credentials ? ButtonType.Primary : ButtonType.Tertiary}
                 onPress={handleDeclinePress}
               />
             </View>
@@ -283,7 +283,7 @@ const ProofRequest: React.FC<ProofRequestProps> = ({ navigation, route }) => {
                       {(field as Attribute)?.value || `${(field as Predicate)?.pType} ${(field as Predicate)?.pValue}`}
                     </Text>
                   )}
-                  {(field as Attribute)?.value ? (
+                  {/* {(field as Attribute)?.value ? (
                     <TouchableOpacity
                       accessible={true}
                       accessibilityLabel={t('ProofRequest.Details')}
@@ -299,7 +299,7 @@ const ProofRequest: React.FC<ProofRequestProps> = ({ navigation, route }) => {
                     >
                       <Text style={styles.detailsButton}>{t('ProofRequest.Details')}</Text>
                     </TouchableOpacity>
-                  ) : null}
+                  ) : null} */}
                 </>
               )}
             />

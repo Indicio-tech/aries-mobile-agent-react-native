@@ -47,8 +47,8 @@ const Record: React.FC<RecordProps> = ({ header, footer, fields = [], hideFieldV
       ListHeaderComponent={
         <RecordHeader>
           {header()}
-          {hideFieldValues ? (
-            <View style={styles.linkContainer}>
+          <View style={styles.linkContainer}>
+            {hideFieldValues ? (
               <TouchableOpacity
                 style={styles.link}
                 activeOpacity={1}
@@ -59,8 +59,8 @@ const Record: React.FC<RecordProps> = ({ header, footer, fields = [], hideFieldV
               >
                 <Text style={ListItems.recordLink}>{t('Record.HideAll')}</Text>
               </TouchableOpacity>
-            </View>
-          ) : null}
+            ) : null}
+          </View>
         </RecordHeader>
       }
       ListFooterComponent={<RecordFooter>{footer()}</RecordFooter>}

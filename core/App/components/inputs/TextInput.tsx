@@ -12,7 +12,7 @@ const TextInput: React.FC<Props> = ({ label, ...textInputProps }) => {
   const { Inputs } = useTheme()
   const styles = StyleSheet.create({
     container: {
-      marginVertical: 10,
+      marginVertical: 5,
     },
     label: {
       ...Inputs.label,

@@ -28,29 +28,33 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
 
   const styles = StyleSheet.create({
+    parent: {
+      height: '100%',
+      justifyContent: 'space-between',
+    },
     container: {
       width: '100%',
-      padding: 20,
+      padding: 5,
     },
     groupHeader: {
       ...SettingsTheme.groupHeader,
+      paddingBottom: 8,
     },
     rowGroup: {
-      borderRadius: borderRadius * 2,
-      backgroundColor: SettingsTheme.groupBackground,
-      marginBottom: 16,
       flexDirection: 'column',
-      padding: 15,
+      borderRadius: borderRadius,
+      backgroundColor: SettingsTheme.groupBackground,
+      padding: 16,
+      marginBottom: 6,
     },
     row: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      marginBottom: 4,
+      marginBottom: 3,
     },
     subHeader: {
-      ...SettingsTheme.subtext,
-      marginBottom: 4,
+      ...SettingsTheme.subHeader,
     },
     resetContainer: {
       width: '100%',
@@ -59,7 +63,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
     },
     resetButton: {
       ...SettingsTheme.resetButton,
-      width: '90%',
+      width: '93%',
       paddingVertical: 12,
       textAlign: 'center',
     },
@@ -84,11 +88,11 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaScrollView>
+    <View style={styles.parent}>
       <View style={styles.container}>
-        <Text style={styles.groupHeader}>{t('Settings.UserSettings')}</Text>
         <View style={styles.rowGroup}>
-          <Text style={styles.subHeader}>{t('DisplayName.Name')}</Text>
+          <Text style={styles.groupHeader}>{t('Settings.UserSettings')}</Text>
+          <Text style={styles.subHeader}>Name</Text>
           <TouchableOpacity
             accessible={true}
             accessibilityLabel={'Name'}
@@ -101,8 +105,8 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.groupHeader}>{t('Settings.AppPreferences')}</Text>
         <View style={styles.rowGroup}>
+          <Text style={styles.groupHeader}>{t('Settings.Preferences')}</Text>
           <TouchableOpacity
             accessible={true}
             accessibilityLabel={t('Settings.Language')}
@@ -115,8 +119,8 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.groupHeader}>{t('Settings.AboutApp')}</Text>
         <View style={styles.rowGroup}>
+          <Text style={styles.groupHeader}>{t('Settings.About')}</Text>
           <View style={styles.row}>
             <Text style={SettingsTheme.text} testID={testIdWithKey('VersionLabel')}>
               {t('Settings.Version')}
@@ -149,17 +153,15 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.resetContainer}>
-        <View style={styles.resetButton}>
-          <TouchableOpacity
-            accessible={true}
-            accessibilityLabel={t('Settings.ResetWallet')}
-            testID={testIdWithKey('Language')}
-            style={[styles.row, { flexDirection: 'column' }]}
-            onPress={() => setModalVisible(true)}
-          >
-            <Text style={[SettingsTheme.resetText, { textAlign: 'center' }]}>{t('Settings.ResetWallet')}</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          accessible={true}
+          accessibilityLabel={t('Settings.ResetWallet')}
+          testID={testIdWithKey('Language')}
+          style={[styles.resetButton, { flexDirection: 'column' }]}
+          onPress={() => setModalVisible(true)}
+        >
+          <Text style={[SettingsTheme.resetText, { textAlign: 'center' }]}>{t('Settings.ResetWallet')}</Text>
+        </TouchableOpacity>
       </View>
       {modalVisible && (
         <ConfirmModal
@@ -172,7 +174,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           abortSubmit={() => setModalVisible(false)}
         />
       )}
-    </SafeAreaScrollView>
+    </View>
   )
 }
 

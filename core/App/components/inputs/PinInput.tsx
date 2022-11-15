@@ -54,7 +54,8 @@ const PinInput: React.FC<PinInputProps> = ({ label, onPinChanged, testID, access
       color: PinInputTheme.cellText.hidden,
       fontSize: 40,
       textAlign: 'center',
-      lineHeight: 48,
+      marginTop: 3,
+      lineHeight: 40,
     },
     cellTextVisible: {
       ...TextTheme.normal,
@@ -118,7 +119,7 @@ const PinInput: React.FC<PinInputProps> = ({ label, onPinChanged, testID, access
         >
           <Icon
             color={showPin ? PinInputTheme.icon.show : PinInputTheme.icon.hide}
-            name={showPin ? 'visibility-off' : 'visibility'}
+            name={'visibility'}
             size={30}
           ></Icon>
         </TouchableOpacity>

@@ -16,7 +16,7 @@ import { AuthenticateStackParams, Screens } from '../types/navigators'
 const NameCreate: React.FC = () => {
   const { t } = useTranslation()
   const [state, dispatch] = useContext(StoreContext)
-  const { ColorPallet } = useTheme()
+  const { ColorPallet, TextTheme } = useTheme()
   const [firstName, onChangeFirstName] = useState('')
   const [lastName, onChangeLastName] = useState('')
   const [buttonsActive, setButtonsActive] = useState(false)
@@ -24,24 +24,27 @@ const NameCreate: React.FC = () => {
 
   const styles = StyleSheet.create({
     title: {
-      color: ColorPallet.grayscale.white,
+      ...TextTheme.normal,
       fontSize: 16,
     },
     warningText: {
+      ...TextTheme.normal,
       fontWeight: 'bold',
-      color: ColorPallet.grayscale.white,
-      paddingRight: 10,
+      fontSize: 14,
     },
     text: {
-      color: ColorPallet.grayscale.white,
+      ...TextTheme.normal,
       marginBottom: 10,
-      fontSize: 12,
+      fontSize: 14,
     },
     row: {
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: 12,
+      paddingVertical: 12,
+      paddingRight: 20,
+    },
+    button: {
+      width: '100%',
     },
   })
 
@@ -80,32 +83,27 @@ const NameCreate: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <View style={{ padding: 20 }}>
+      <View style={{ padding: 15 }}>
         <Text style={styles.title}>{t('DisplayName.Enter')}</Text>
         <View style={styles.row}>
           <Icon name={'alert-circle'} size={26} color={ColorPallet.notification.infoIcon} style={{ marginRight: 10 }} />
           <Text style={styles.warningText}>{t('DisplayName.Warning')}</Text>
         </View>
         <Text style={styles.text}>{t('DisplayName.RecommendedName')}</Text>
-        <TextInput
-          label={t('DisplayName.First')}
-          onChangeText={onChangeFirstName}
-          value={firstName}
-          placeholder={t('DisplayName.First')}
-        />
-        <TextInput
-          label={t('DisplayName.Last')}
-          onChangeText={onChangeLastName}
-          value={lastName}
-          placeholder={t('DisplayName.Last')}
-        />
+        <TextInput label={t('DisplayName.First')} onChangeText={onChangeFirstName} value={firstName} />
+        <TextInput label={t('DisplayName.Last')} onChangeText={onChangeLastName} value={lastName} />
         <Text style={styles.text}>{t('DisplayName.Update')}</Text>
-        <Button
-          title={t('Global.Confirm')}
-          buttonType={ButtonType.Primary}
-          onPress={() => setDisplayName(firstName + ' ' + lastName)}
-          disabled={!buttonsActive}
-        />
+        <View style={{ width: '100%', alignItems: 'center' }}>
+          <View style={styles.button}>
+            <Button
+              title={t('Global.Confirm')}
+              buttonType={ButtonType.Primary}
+              onPress={() => setDisplayName(firstName + ' ' + lastName)}
+              disabled={!buttonsActive}
+              styles={{ marginTop: 15 }}
+            />
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   )
