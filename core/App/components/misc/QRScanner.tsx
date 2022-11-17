@@ -135,17 +135,6 @@ const QRScanner: React.FC<Props> = ({ handleCodeScan, error, setQrCodeScanError 
     requestCameraPermissions()
   }, [setHasPermission])
 
-  // this useEffect will request camera permissions when the Android app is focused. Example: user changes permissions in settings and returns to the app.
-  useEffect(() => {
-    const subscription = AppState.addEventListener('focus', () => {
-      requestCameraPermissions()
-    })
-
-    return () => {
-      subscription.remove()
-    }
-  }, [])
-
   useEffect(() => {
     if (cameraActive && barcodes[0]?.displayValue) {
       Vibration.vibrate()
