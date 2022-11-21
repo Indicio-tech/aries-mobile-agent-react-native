@@ -55,7 +55,7 @@
     "react-native-toast-message": "2.0.1",
     "react-native-uuid": "2.0.1",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-vision-camera": "^2.14.1",
+    "react-native-vision-camera": "^2.15.2",
     "react-native-webview": "^11.23.0",
     "uuid": "8.3.2",
     "vision-camera-code-scanner": "^0.2.0"

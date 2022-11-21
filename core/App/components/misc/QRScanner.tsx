@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Platform,
 } from 'react-native'
 import { Camera, useCameraDevices, CameraPermissionStatus } from 'react-native-vision-camera'
 import { Barcode, useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
@@ -137,12 +138,14 @@ const QRScanner: React.FC<Props> = ({ handleCodeScan, error, setQrCodeScanError 
 
   // this useEffect will request camera permissions when the Android app is focused. Example: user changes permissions in settings and returns to the app.
   useEffect(() => {
-    const subscription = AppState.addEventListener('focus', () => {
-      requestCameraPermissions()
-    })
+    if (Platform.OS === 'android') {
+      const subscription = AppState.addEventListener('focus', () => {
+        requestCameraPermissions()
+      })
 
-    return () => {
-      subscription.remove()
+      return () => {
+        subscription.remove()
+      }
     }
   }, [])
 
