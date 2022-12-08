@@ -1,3 +1,0 @@
-i18next.addResourceBundle('en', 'namespace1', {
-  key: 'hello from namespace 1'
-});
