@@ -1,9 +1,8 @@
-//
-//  AriesBifold.swift
-//  AriesBifold
-//
-//  Created by James Ebert on 3/12/21.
-//  Copyright © 2021 Facebook. All rights reserved.
-//
+@objc(AriesBifold)
+class AriesBifold: NSObject {
 
-import Foundation
+  @objc(multiply:withB:withResolver:withRejecter:)
+  func multiply(a: Float, b: Float, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+    resolve(a*b)
+  }
+}
