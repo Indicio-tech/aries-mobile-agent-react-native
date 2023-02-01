@@ -10,8 +10,8 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@aries-framework/core": "^0.3.3",
-    "@aries-framework/react-hooks": "^0.4.0",
+    "@aries-framework/core": "file:../aries-framework-core-v0.3.3-messageSorting-v.0.1.tgz",
+    "@aries-framework/react-hooks": "file:../aries-framework-react-hooks-v0.4.1-messageSorting-v.0.3.tgz",
     "@aries-framework/react-native": "^0.3.2",
     "@formatjs/intl-datetimeformat": "4.2.4",
     "@formatjs/intl-displaynames": "5.2.4",

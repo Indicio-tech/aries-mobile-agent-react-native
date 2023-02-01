@@ -1,4 +1,11 @@
-import { useAgent, useConnectionById, useBasicMessagesByConnectionId } from '@aries-framework/react-hooks'
+import type { BaseRecord } from '@aries-framework/core'
+
+import {
+  useAgent,
+  useConnectionById,
+  useBasicMessagesByConnectionId,
+  useMessagesByConnectionId,
+} from '@aries-framework/react-hooks'
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -21,10 +28,8 @@ const Chat: React.FC<ChatProps> = ({ navigation, route }) => {
   const { t } = useTranslation()
   const { agent } = useAgent()
   const connection = useConnectionById(connectionId)
-  const basicMessages = useBasicMessagesByConnectionId(connectionId)
+  const allMessages = useMessagesByConnectionId(connectionId)
   const { assertConnectedNetwork, silentAssertConnectedNetwork } = useNetwork()
-
-  const [messages, setMessages] = useState<any>([])
 
   useMemo(() => {
     assertConnectedNetwork()
@@ -38,19 +43,28 @@ const Chat: React.FC<ChatProps> = ({ navigation, route }) => {
     })
   }, [connection])
 
+  // useEffect(() => {
+  //   const transformedMessages = allMessages.map((m: any) => {
+  //     return {
+  //       _id: m.id,
+  //       text: m.content,
+  //       record: m,
+  //       createdAt: m.createdAt,
+  //       type: m.type,
+  //       user: { _id: m.role },
+  //     }
+  //   })
+  //   setMessages(transformedMessages.sort((a: any, b: any) => b.createdAt - a.createdAt))
+  // }, [allMessages])
+
   useEffect(() => {
-    const transformedMessages = basicMessages.map((m: any) => {
-      return {
-        _id: m.id,
-        text: m.content,
-        record: m,
-        createdAt: m.createdAt,
-        type: m.type,
-        user: { _id: m.role },
+    allMessages.forEach((element: any) => {
+      const readTime = element.metadata.get('read_time')
+      if (!readTime) {
+        element.metadata.set('read_time', new Date())
       }
     })
-    setMessages(transformedMessages.sort((a: any, b: any) => b.createdAt - a.createdAt))
-  }, [basicMessages])
+  }, [allMessages])
 
   const onSend = async (messages: IMessage[]) => {
     await agent?.basicMessages.sendMessage(connectionId, messages[0].text)
@@ -60,7 +74,18 @@ const Chat: React.FC<ChatProps> = ({ navigation, route }) => {
 
   return (
     <GiftedChat
-      messages={messages}
+      messages={allMessages
+        .map((m: any) => {
+          return {
+            _id: m.id,
+            text: m.content,
+            record: m,
+            createdAt: m.createdAt,
+            type: m.type,
+            user: { _id: m.role },
+          }
+        })
+        .sort((a: any, b: any) => b.createdAt - a.createdAt)}
       showAvatarForEveryMessage={true}
       renderAvatar={() => null}
       renderBubble={(props) => renderBubble(props, theme)}

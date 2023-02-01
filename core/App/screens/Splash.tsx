@@ -155,7 +155,7 @@ const Splash: React.FC = () => {
 
         const options = {
           config: {
-            label: 'Aries Bifold',
+            label: 'Bifold App',
             mediatorConnectionsInvite: Config.MEDIATOR_URL,
             mediatorPickupStrategy: MediatorPickupStrategy.Implicit,
             walletConfig: { id: credentials.id, key: credentials.key },
