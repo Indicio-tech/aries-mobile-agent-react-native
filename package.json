@@ -3,6 +3,7 @@
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
+    "app",
     "packages/*",
     "packages/legacy/core",
     "packages/legacy/app"
