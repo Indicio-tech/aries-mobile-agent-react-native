@@ -19,12 +19,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aries-bifold/core@workspace:packages/core"
   dependencies:
+    "@aries-framework/core": ^0.3.3
+    "@aries-framework/react-hooks": ^0.3.0
+    "@aries-framework/react-native": ^0.2.5
     "@types/jest": ^28.1.2
     "@types/react": ~17.0.21
     "@types/react-native": 0.71.5
+    "@types/react-native-vector-icons": ^6.4.6
     "@types/ws": ^7.4.6
+    i18next: ^22.0.6
     react: 18.2.0
+    react-i18next: ^12.0.0
     react-native: 0.71.5
+    react-native-localize: ^2.2.4
+    react-native-vector-icons: ^8.1.0
     rimraf: ^4.0.7
     typescript: ~4.9.4
   peerDependencies:
@@ -1648,7 +1656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.0, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.5, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.0, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.5, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.8.4":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
@@ -9967,6 +9975,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18next@npm:^22.0.6":
+  version: 22.4.13
+  resolution: "i18next@npm:22.4.13"
+  dependencies:
+    "@babel/runtime": ^7.20.6
+  checksum: a40ca4ce749854a806a01e3e60ee492f2911b1f7acb6ed338bb023211259ef8c39e914734d10197d3279941459767897ceb1989c8e24cd73730fdf211e079037
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.4.24, iconv-lite@npm:^0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -15732,6 +15749,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-i18next@npm:^12.0.0":
+  version: 12.2.0
+  resolution: "react-i18next@npm:12.2.0"
+  dependencies:
+    "@babel/runtime": ^7.20.6
+    html-parse-stringify: ^3.0.1
+  peerDependencies:
+    i18next: ">= 19.0.0"
+    react: ">= 16.8.0"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: ed2d6a5bb6746c2ea25cca9531b400d62edef6479631c1113eb7a3c3f6b28d493492171d7dc6d87f61a7d7e9b21d4be3bd7eaf0f7af00392fb546d8c50267345
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.12.0 || ^17.0.0 || ^18.0.0, react-is@npm:^18.0.0":
   version: 18.2.0
   resolution: "react-is@npm:18.2.0"
@@ -16085,7 +16120,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-localize@npm:^2.1.5":
+"react-native-localize@npm:^2.1.5, react-native-localize@npm:^2.2.4":
   version: 2.2.6
   resolution: "react-native-localize@npm:2.2.6"
   peerDependencies:
