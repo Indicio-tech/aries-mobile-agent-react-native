@@ -9,16 +9,12 @@ import Title from './builder/text/Title'
 import { useTranslation } from 'react-i18next'
 import { applyStyles } from '../utils/styles'
 
-interface ContactItemProps {
-  overrideStyles?: ContactItemStyles
-  strings?: ContactItemStrings
+export interface ContactCardProps {
+  overrideStyles?: ContactCardStyles
   contactRecord: ConnectionRecord
   onPressCallback: () => void
 }
-interface ContactItemStrings {
-  new: string
-}
-interface ContactItemStyles {
+export interface ContactCardStyles {
   outerContainer: ViewStyle,
   textContainer: ViewStyle,
   iconContainer: ViewStyle,
@@ -27,16 +23,16 @@ interface ContactItemStyles {
   contactIcon: IconStyle,
   containerStyles: ViewStyle,
 }
-interface IconStyle {
+export interface IconStyle {
   color: ColorValue
 }
 
 
-const ContactItem: React.FC<ContactItemProps> = ({overrideStyles, contactRecord, onPressCallback}) => {
+const ContactCard: React.FC<ContactCardProps> = ({overrideStyles, contactRecord, onPressCallback}) => {
   const { t } = useTranslation()
 
   const { ColorPallet } = useTheme()
-  const defaultStyles:ContactItemStyles = {
+  const defaultStyles:ContactCardStyles = {
     outerContainer: {
       backgroundColor: ColorPallet.brand.secondaryBackground,
       marginTop: 15,
@@ -81,10 +77,10 @@ const ContactItem: React.FC<ContactItemProps> = ({overrideStyles, contactRecord,
       }
       style={styles.containerStyles}
     >
-      <View key={contactRecord.id} style={styles.outerContainer}>
+      <View key={contactRecord?.id} style={styles.outerContainer}>
         <View style={styles.textContainer}>
           <Title style={styles.contactTitle}>{contactRecord?.alias || contactRecord?.theirLabel}</Title>
-          <Text style={styles.contactDate}>{contactRecord.createdAt.toLocaleDateString('en-CA', dateFormatOptions)}</Text>
+          <Text style={styles.contactDate}>{contactRecord?.createdAt?.toLocaleDateString('en-CA', dateFormatOptions)}</Text>
         </View>
         <View style={styles.iconContainer}>
           <Icon name="message" size={32} color={styles.contactIcon!.color} />
@@ -93,4 +89,4 @@ const ContactItem: React.FC<ContactItemProps> = ({overrideStyles, contactRecord,
     </TouchableOpacity>
   )
 }
-export default ContactItem
+export default ContactCard

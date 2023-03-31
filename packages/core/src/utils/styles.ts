@@ -17,11 +17,13 @@ export interface IconStyle {
  *    alignItems: 'flex-start',
  *  },
  * }
+ * 
  * const overrideStyles = {
  *  outerContainer: {
  *    backgroundColor: 'green'
  *  }
  * }
+ * 
  * appliedStyles = {
  *  outerContainer: {
  *    backgroundColor: 'green',

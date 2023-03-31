@@ -25,6 +25,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import {
+  ContactCard
+} from '@aries-bifold/core'
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -33,6 +37,7 @@ function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
+      <ContactCard />
       <Text
         style={[
           styles.sectionTitle,
@@ -116,3 +121,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+// export {default} from './.storybook';

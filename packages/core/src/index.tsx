@@ -1,4 +1,5 @@
 import { NativeModules, Platform } from 'react-native'
+import ContactCard from './components/ContactCard'
 
 const LINKING_ERROR =
   `The package '@aries-bifold/core' doesn't seem to be linked. Make sure: \n\n` +
@@ -17,6 +18,6 @@ const Core = NativeModules.Core
       }
     )
 
-export function multiply(a: number, b: number): Promise<number> {
-  return Core.multiply(a, b)
+export {
+  ContactCard
 }
